@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 public class Queen extends Piece {
+
     private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public Queen(final int piecePosition, final Alliance pieceAlliance) {
@@ -56,6 +57,10 @@ public class Queen extends Piece {
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
+    }
+    @Override
+    public String toString(){
+        return PieceType.QUEEN.toString();
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {

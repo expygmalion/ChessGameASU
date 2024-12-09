@@ -1,17 +1,19 @@
 package com.chess.engine.pieces;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
+
 import java.util.Collection;
 
 
 public abstract class Piece {
     protected final int piecePosition;
     protected final Alliance pieceAlliance;
-        protected final boolean isFirstMove; //Ahmed Added
+    protected final boolean isFirstMove; //Ahmed Added
 
     public Piece(int piecePosition, Alliance pieceAlliance) {
         this.piecePosition = piecePosition;
         this.pieceAlliance = pieceAlliance;
+        //TODO more work here
         this.isFirstMove = false; //Ahmed Added
     }
     public Alliance getPieceAlliance() {
@@ -42,4 +44,7 @@ public abstract class Piece {
         // End Ahmed Added
     }
 
+    public boolean isFirstMove() {
+        return isFirstMove;
+    }
 }

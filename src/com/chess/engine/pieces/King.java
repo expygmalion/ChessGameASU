@@ -1,7 +1,6 @@
 package com.chess.engine.pieces;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
@@ -9,44 +8,56 @@ import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class King extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
-    // Possible relative moves for a king in all directions.
+//    represent the diagonal moves from its position
+//    •	Diagonal moves: -9, -7, 7, 9.
+//	•	Horizontal moves: -1, 1.
+//	•	Vertical moves: -8, 8.
 
-    public King(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public King(final int piecePostion,final Alliance pieceAlliance) {
+        super(piecePostion, pieceAlliance);
     }
+//    override
 
-    @Override
-    public String toString() {
+    public String toString(){
         return PieceType.KING.toString();
     }
+//    added this methods
 
-    @Override
     public King movePiece(final Move move) {
-        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+        return new King (move.getDestinationCoordinate(),
+                move.getMovedPiece().getPieceAlliance());
     }
+//    implement move method
 
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
+
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
-            final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
+        for (final int currentCadidateOffset : CANDIDATE_MOVE_COORDINATE) {
+            final int candidateDestinationCoordinate = this.piecePosition + currentCadidateOffset;
 
-            // Handle edge cases for first and eighth columns.
-            if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                    isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
+            if (isFirstColumnExclusion(this.piecePosition,currentCadidateOffset)||
+                    isEighthColumnExclusion(this.piecePosition,currentCadidateOffset)) {
                 continue;
             }
 
-            // Validate destination coordinates.
+
             if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+//                ensures the destination coordinate lies within the valid board range (0–63 for a chessboard).
 
                 if (!candidateDestinationTile.isTileOccupied()) {
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
@@ -54,20 +65,33 @@ public class King extends Piece {
                     if (this.pieceAlliance != pieceAlliance) {
                         legalMoves.add(new Move.attackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
+//                    	If it’s an opponent’s piece, creates an AttackMove object to represent a capture.
+
                 }
+
+
             }
+
+
         }
 
-        return ImmutableList.copyOf(legalMoves); // Return an immutable list of legal moves.
+
+        return ImmutableList.copyOf(legalMoves);
+//        ensuring that it cannot be modified after calculation.
+
     }
 
-    // Restricts moves that would cross from the first column.
-    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7);
-    }
 
-    // Restricts moves that would cross from the eighth column.
-    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
+    private static boolean isFirstColumnExclusion (final int currentPosition , final int candidateOffset){
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset==-9|| candidateOffset==-1 ||
+                candidateOffset==7 );
+//        	•	-9: Top-left diagonal.
+//	•	-1: Horizontal left move.
+//	•	7: Bottom-left diagonal.
+    }
+    private static boolean isEighthColumnExclusion (final int currentPosition , final int candidateOffset) {
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == 1 || candidateOffset == 9 || candidateOffset == -7);
+
+
     }
 }

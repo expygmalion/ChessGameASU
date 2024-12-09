@@ -1,10 +1,11 @@
 package com.chess.engine.pieces;
 
+
 public enum Alliance {
     WHITE {
-        @Override
-        public int getDirection() {
-            return -1; // White pieces move "up" on the board.
+        //   override
+        public  int getDirection(){
+            return -1;
         }
 
         @Override
@@ -16,11 +17,12 @@ public enum Alliance {
         public boolean isBlack() {
             return false;
         }
+
     },
     BLACK {
-        @Override
         public int getDirection() {
-            return 1; // Black pieces move "down" on the board.
+            return 1;
+
         }
 
         @Override
@@ -34,13 +36,28 @@ public enum Alliance {
         }
     };
 
-    // Abstract methods to enforce implementation in enum constants.
+
+    //    here above we must make an implement
+
+
+
+
     public abstract int getDirection();
+
     public abstract boolean isWhite();
     public abstract boolean isBlack();
 
-    // Returns the Alliance constant (self-reference for enums).
     public Alliance getPieceAlliance() {
-        return this; // Since the enum itself represents WHITE or BLACK, simply return it.
+
+
+        if (this.isWhite()){
+            return WHITE;
+        };
+        if (this.isBlack()){
+            return BLACK;
+        }
+        else {
+            return null;
+        }
     }
 }

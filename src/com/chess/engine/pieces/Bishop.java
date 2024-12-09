@@ -1,17 +1,18 @@
 package com.chess.engine.pieces;
+
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
 public class Bishop extends Piece {
 
-private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
+    private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
 
     public Bishop(int piecePosition, Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
@@ -32,7 +33,7 @@ private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
                 }
 
 
-                    if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+                if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if(!candidateDestinationTile.isTileOccupied()){
@@ -50,6 +51,10 @@ private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
             }
         }
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    public String toString(){
+        return PieceType.BISHOP.toString();
     }
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
 
