@@ -41,7 +41,7 @@ public class Board {
         // Added Omer
         this.whiteplayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackplayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-        this.currentPlayer=builder.nextMoveMaker.choosePlayer(this.whiteplayer,this.blackplayer);
+        this.currentPlayer=builder.nextMoveMaker.choosePlayer(this.whiteplayer,this.blackplayer); // Rawan
         // End Add
 
     }
@@ -181,9 +181,9 @@ public class Board {
             this.boardConfig.put(piece.getPiecePosition(), piece);
             return this;
         }
-        public Builder setMoveMaker(final Piece piece){
-            this.boardConfig.put(piece.getPiecePosition(), piece);
-            return this;
+        public Builder setMoveMaker(final Alliance nextMoveMaker){
+            this.nextMoveMaker = nextMoveMaker;
+                    return this;
         }
 
 

@@ -27,11 +27,12 @@ public class Pawn extends Piece {
         return PieceType.PAWN.toString();
     } // End Add
 
-
+    // Added Rawan
+    @Override
     public Pawn movePiece(final Move move) {
         return new Pawn(move.getDestinationCoordinate(),
                 move.getMovedPiece().getPieceAlliance());
-    }
+    }// End Add
 // implementation method
 
     public Collection<Move> calculateLegalMoves(final Board board) {

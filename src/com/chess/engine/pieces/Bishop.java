@@ -45,7 +45,7 @@ public class Bishop extends Piece {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         if (this.pieceAlliance != pieceAlliance) {
-                            legalMoves.add(new Move.attackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break;
                     }
@@ -54,6 +54,13 @@ public class Bishop extends Piece {
         }
         return ImmutableList.copyOf(legalMoves);
     }
+
+
+    // Added Rawan
+    @Override
+    public Piece movePiece(Move move) {
+        return new Bishop( move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    } // End Add
 
     // Added Ahmed
     @Override

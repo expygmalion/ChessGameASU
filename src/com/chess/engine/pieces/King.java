@@ -14,6 +14,7 @@ import java.util.Collection;
 
 
 //TODO Mishkat creates the class King and provides structure and functionality
+// Subsequent Additions are prevalent for advanced functionalities
 
 public class King extends Piece {
 
@@ -35,10 +36,12 @@ public class King extends Piece {
     }
     //  End Add
 
+    // Added Rawan
+    @Override
     public King movePiece(final Move move) {
         return new King (move.getDestinationCoordinate(),
                 move.getMovedPiece().getPieceAlliance());
-    }
+    } // End Add
 //    implement move method
 
     @Override
@@ -68,7 +71,7 @@ public class King extends Piece {
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                     if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move.attackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
 //                    	If it’s an opponent’s piece, creates an AttackMove object to represent a capture.
 

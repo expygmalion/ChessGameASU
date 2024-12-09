@@ -46,13 +46,19 @@ public class Knight extends Piece {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                     if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move.attackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }
             }
         }
         return ImmutableList.copyOf(legalMoves);
     }
+    // Added Rawan
+    @Override
+    public Piece movePiece(Move move) {
+        return new Knight( move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    } // End Add
+
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return
                 BoardUtils.FIRST_COLUMN[currentPosition]

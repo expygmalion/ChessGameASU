@@ -1,6 +1,10 @@
 package com.chess.engine;
 
 
+import com.chess.engine.Player.BlackPlayer;
+import com.chess.engine.Player.Player;
+import com.chess.engine.Player.WhitePlayer;
+
 public enum Alliance {
     WHITE {
         //   override
@@ -18,6 +22,12 @@ public enum Alliance {
             return false;
         }
 
+        // Added Rawan
+        @Override
+        public Player choosePlayer(WhitePlayer whiteplayer, BlackPlayer blackplayer) {
+            return blackplayer;
+        }  // End Add
+
     },
     BLACK {
         public int getDirection() {
@@ -34,10 +44,15 @@ public enum Alliance {
         public boolean isBlack() {
             return true;
         }
+
+        // Added Rawan
+        @Override
+        public Player choosePlayer(final WhitePlayer whiteplayer,
+                                   final BlackPlayer blackplayer) {
+            return whiteplayer;
+        } // End Add
     };
 
-
-    //    here above we must make an implement
 
 
 
@@ -46,6 +61,9 @@ public enum Alliance {
 
     public abstract boolean isWhite();
     public abstract boolean isBlack();
+
+    public abstract Player choosePlayer(final WhitePlayer whiteplayer,
+                                        final BlackPlayer blackplayer);
 
     public Alliance getPieceAlliance() {
 
@@ -60,4 +78,6 @@ public enum Alliance {
             return null;
         }
     }
+
+
 }

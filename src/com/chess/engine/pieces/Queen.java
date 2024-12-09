@@ -46,7 +46,7 @@ public class Queen extends Piece {
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if (this.pieceAlliance != pieceAlliance) {
-                            legalMoves.add(new Move.attackMove(board, this, candidateDestinationCoordinate,
+                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
                                     pieceAtDestination));
                         }
                         break;
@@ -57,6 +57,11 @@ public class Queen extends Piece {
 
         return List.copyOf(legalMoves); // Using List.copyOf for immutability
     }
+    // Added Rawan
+    @Override
+    public Piece movePiece(Move move) {
+        return new Queen( move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }// End Add
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1 || candidateOffset == -9 || candidateOffset == 7);
