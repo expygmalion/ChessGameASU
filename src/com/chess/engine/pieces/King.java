@@ -25,10 +25,12 @@ public class King extends Piece {
     }
 //    override
 
+    // Added Ahmed
+    @Override
     public String toString(){
         return PieceType.KING.toString();
     }
-//    added this methods
+    //  End Add
 
     public King movePiece(final Move move) {
         return new King (move.getDestinationCoordinate(),

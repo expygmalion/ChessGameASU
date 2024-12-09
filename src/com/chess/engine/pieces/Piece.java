@@ -37,11 +37,12 @@ public abstract class Piece {
         PieceType(final String pieceName){
             this.pieceName = pieceName;
         }
+        // Added Ahmed
         @Override
         public String toString(){
             return this.pieceName;
         }
-        // End Ahmed Added
+        // End Add
     }
 
     public boolean isFirstMove() {

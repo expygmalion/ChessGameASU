@@ -56,10 +56,12 @@ public class Rook extends Piece {
 
         return ImmutableList.copyOf(legalMoves);
     }
+
+    // Added Ahmed
     @Override
     public String toString(){
         return PieceType.ROOK.toString();
-    }
+    } // End Add
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1);

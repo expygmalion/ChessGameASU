@@ -70,6 +70,8 @@ public class Board {
         }
         return ImmutableList.copyOf(tiles);
     }
+
+
     public static Board createStandardBoard() {
         final Builder builder = new Builder();
         // black standard

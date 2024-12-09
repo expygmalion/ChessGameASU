@@ -19,11 +19,12 @@ public class Pawn extends Piece {
 
 // count 8 squares to get the opposite move
 
-
+    // Added Ahmed
+    @Override
     public String toString() {
         return PieceType.PAWN.toString();
-    }
-//    Added function
+    } // End Add
+
 
     public Pawn movePiece(final Move move) {
         return new Pawn(move.getDestinationCoordinate(),

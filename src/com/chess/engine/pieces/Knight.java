@@ -87,8 +87,10 @@ public class Knight extends Piece {
                         (   (candidateOffset == -6 )
                                 || (candidateOffset ==   10)   );
     }
+
+    // Added Ahmed
     @Override
     public String toString(){
         return PieceType.KNIGHT.toString();
-    }
+    } // End Add
 }
