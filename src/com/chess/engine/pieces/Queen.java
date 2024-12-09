@@ -9,6 +9,8 @@ import com.chess.engine.board.Tile;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+//TODO Khalid Creates the Class and provides structure and functionality
 public class Queen extends Piece {
 
     private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};

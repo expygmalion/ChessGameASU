@@ -1,10 +1,10 @@
 package com.chess.engine.board;
 import com.chess.engine.pieces.Piece;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-
 import java.util.HashMap;
 import java.util.Map;
+
+//TODO Taj Creates the Class and provides structure and functionality
 
 public abstract class Tile {
     protected final int tileCoordinate;

@@ -5,6 +5,8 @@ import com.chess.engine.board.Move;
 import java.util.Collection;
 
 
+//TODO Taj creates the abstract class piece. To be extended by types.
+
 public abstract class Piece {
     protected final int piecePosition;
     protected final Alliance pieceAlliance;
@@ -13,7 +15,7 @@ public abstract class Piece {
     public Piece(int piecePosition, Alliance pieceAlliance) {
         this.piecePosition = piecePosition;
         this.pieceAlliance = pieceAlliance;
-        //TODO more work here
+        //TODO more work here???
         this.isFirstMove = false; //Ahmed Added
     }
     public Alliance getPieceAlliance() {
@@ -22,6 +24,8 @@ public abstract class Piece {
 
     public abstract Collection<Move> calculateLegalMoves(final Board board);
 
+    // we use integer instead of int because it is needed for collections,
+    // we ensure compatibility with guava Library and other libs
     public Integer getPiecePosition() { return this.piecePosition; }
 
     // Ahmed Added

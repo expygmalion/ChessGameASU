@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+//TODO MISHKAT Creates the Class and provides structure and functionality
 public class Pawn extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATE = {8, 16, 9, 7};

@@ -5,20 +5,28 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.*;
 
+//TODO Taj Creates the Board Class with Empty Body, To be used by other classes under his purview
+//TODO Ahmed sets the general structure of the Board
+//TODO Omer adds the functionalities requires for the Player Interactions
+
 public class Board {
 
     private final List<Tile> gameBoard;
+    // Added Ahmed
     private final Collection<Piece> whitePieces;
     private final Collection<Piece> blackPieces;
+    // End Add
+
 
     private Board(Builder builder){
 
         this.gameBoard = createGameBoard(builder);
+        // Added Ahmed
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
-
+        // End Add
     }
-
+    // Added Ahmed
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -30,20 +38,23 @@ public class Board {
             }
         }
         return builder.toString();
-    }
+    }// End Add
 
+    // Added Ahmed
     private static String prettyPrint(Tile tile) {
         return tile.toString();
-    }
+    }// End Add
 
+    // Added Taj
     private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces){
         final List<Move> legalMoves = new ArrayList<>();
         for (final Piece piece : pieces){
             legalMoves.addAll(piece.calculateLegalMoves(this));
         }
         return ImmutableList.copyOf(legalMoves);
-    }
+    }// End Add
 
+    // Added Ahmed
     private Collection<Piece> calculateActivePieces(final List<Tile> gameBoard,
                                                     final Alliance alliance) {
         final List<Piece> activePieces = new ArrayList<>();
@@ -58,20 +69,23 @@ public class Board {
         }
 
         return ImmutableList.copyOf(activePieces);
-    }
+    }// End Add
 
+    // Added Taj
     public Tile getTile(final int tileCoordinate){
-        return gameBoard.get(tileCoordinate);  //TODO returns null
-    }
+        return gameBoard.get(tileCoordinate);
+    }// End Add
+
+    // Added Ahmed
     private static List<Tile>createGameBoard(final Builder builder){
         final Tile[] tiles= new Tile[BoardUtils.NUM_TILES];
         for (int i=0; i<BoardUtils.NUM_TILES ; i++){
             tiles[i]= Tile.createTile(i, builder.boardConfig.get(i));
         }
         return ImmutableList.copyOf(tiles);
-    }
+    } // End Add
 
-
+    // Added Ahmed
     public static Board createStandardBoard() {
         final Builder builder = new Builder();
         // black standard
@@ -115,8 +129,9 @@ public class Board {
         builder.setPiece(new Pawn(55, Alliance.WHITE));
 
         return builder.build();
-    }
+    } // End Add
 
+    // Added Ahmed
     public static class Builder{
         Map<Integer, Piece>   boardConfig;
         Alliance nextMoveMaker;
@@ -139,4 +154,4 @@ public class Board {
             return new Board(this);
         }
     }
-}
+}// End Add

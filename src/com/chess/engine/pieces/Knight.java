@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 
-
+//TODO Taj Creates the Class and provides structure and functionality
 
 public class Knight extends Piece {
 

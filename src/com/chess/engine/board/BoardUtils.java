@@ -1,7 +1,8 @@
 package com.chess.engine.board;
 
-
+// TODO Taj creates the BoardUtils Class and provides structure and functionality
 public class BoardUtils {
+
     public static final boolean[] FIRST_COLUMN = initColumn(0);
     public static final boolean[] SECOND_COLUMN = initColumn(1);
     public static final boolean[] THIRD_COLUMN = initColumn(2);
@@ -33,7 +34,7 @@ public class BoardUtils {
         } while (columnNumber < NUM_TILES);
         return column;
     }
-    // Ahmed
+
     private static boolean[] initRow(int rowNumber){
         final boolean [] row = new boolean[NUM_TILES];
         do {
@@ -42,7 +43,7 @@ public class BoardUtils {
         }while (rowNumber % NUM_TILES_PER_ROW != 0);
         return row;
     }
-    // End Ahmed
+
     public static boolean isValidTileCoordinate(int coordinate) {
         return coordinate >= 0 && coordinate <= 64;
     }

@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
+//TODO Mishkat creates the class King and provides structure and functionality
+
 public class King extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
