@@ -1,5 +1,9 @@
 package com.chess.engine.board;
 
+import com.chess.engine.Alliance;
+import com.chess.engine.Player.BlackPlayer;
+import com.chess.engine.Player.Player;
+import com.chess.engine.Player.WhitePlayer;
 import com.chess.engine.pieces.*;
 import com.google.common.collect.ImmutableList;
 
@@ -17,15 +21,48 @@ public class Board {
     private final Collection<Piece> blackPieces;
     // End Add
 
+    // Added Omer
+    private final WhitePlayer whiteplayer;
+    private final BlackPlayer blackplayer;
+    private final Player currentPlayer;
+    // End Add
+
 
     private Board(Builder builder){
 
         this.gameBoard = createGameBoard(builder);
         // Added Ahmed
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
-        this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
+        this.blackPieces = calculateActivePieces(this.gameBoard,Alliance.BLACK);
+        final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
+        final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
         // End Add
+
+        // Added Omer
+        this.whiteplayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.blackplayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.currentPlayer=builder.nextMoveMaker.choosePlayer(this.whiteplayer,this.blackplayer);
+        // End Add
+
     }
+    // Added Omer
+    public Player whitePlayer(){
+        return this.whiteplayer;
+    }
+    public Player blackPlayer(){
+        return this.blackplayer;
+    }
+    public Player currentPlayer(){
+        return this.currentPlayer;
+    }
+    public Collection<Piece> getBlackPieces() {
+        return this.blackPieces;
+    }
+    public Collection<Piece> getWhitePieces() {
+        return this.whitePieces;
+    } // End Add
+
+
     // Added Ahmed
     @Override
     public String toString() {

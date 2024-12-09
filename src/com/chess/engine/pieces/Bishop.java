@@ -1,4 +1,5 @@
 package com.chess.engine.pieces;
+import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
@@ -15,7 +16,8 @@ public class Bishop extends Piece {
     private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
 
     public Bishop(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.BISHOP, piecePosition, pieceAlliance); // Omer added a new parameter (piecetype)
+
     }
 
     @Override

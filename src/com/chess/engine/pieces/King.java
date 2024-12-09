@@ -2,15 +2,15 @@ package com.chess.engine.pieces;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 //TODO Mishkat creates the class King and provides structure and functionality
@@ -24,7 +24,7 @@ public class King extends Piece {
 //	•	Vertical moves: -8, 8.
 
     public King(final int piecePostion,final Alliance pieceAlliance) {
-        super(piecePostion, pieceAlliance);
+        super(PieceType.KING, piecePostion, pieceAlliance); // Omer added a new parameter (piecetype)
     }
 //    override
 
