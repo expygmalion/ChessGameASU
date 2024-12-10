@@ -21,17 +21,26 @@ public class Rook extends Piece {
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
+
         final List<Move> legalMoves = new ArrayList<>();
+
         for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
+
             int candidateDestinationCoordinate = this.piecePosition;
+
             while (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+
                 if (isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
                         isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
                 }
+
                 candidateDestinationCoordinate += candidateCoordinateOffset;
-                if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+
+                // Ensure that the candidate coordinate is still within bounds of the board (0-63)
+                if (candidateDestinationCoordinate >= 0 && candidateDestinationCoordinate < 64) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+
                     if (!candidateDestinationTile.isTileOccupied()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                     } else {
@@ -39,17 +48,19 @@ public class Rook extends Piece {
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if (this.pieceAlliance != pieceAlliance) {
-                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
-                                    pieceAtDestination));
+                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break;
                     }
+                } else {
+                    break; // Break if the destination coordinate is out of bounds
                 }
             }
         }
 
         return ImmutableList.copyOf(legalMoves);
     }
+
 
     @Override
     public Piece movePiece(Move move) {

@@ -166,6 +166,8 @@ public class Board {
         builder.setPiece(new Pawn(54, Alliance.WHITE));
         builder.setPiece(new Pawn(55, Alliance.WHITE));
 
+        builder.setMoveMaker(Alliance.WHITE);
+
         return builder.build();
     } // End Add
 
