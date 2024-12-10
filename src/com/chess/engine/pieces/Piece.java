@@ -25,11 +25,11 @@ public abstract class Piece {
 
     public Piece(final PieceType pieceType, // Added by Omer
                  final int piecePosition,
-                 final Alliance pieceAlliance, int cachedHashcode) {
+                 final Alliance pieceAlliance) {
         this.pieceType = pieceType;
         this.piecePosition = piecePosition;
         this.pieceAlliance = pieceAlliance;
-        this.cachedHashcode = cachedHashcode;
+        this.cachedHashcode = computeHashCode();
         //TODO more work here???
         this.isFirstMove = false; //Ahmed Added
     }
