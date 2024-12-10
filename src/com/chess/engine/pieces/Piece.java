@@ -84,10 +84,20 @@ public abstract class Piece {
             public boolean isKing() {
                 return false;
             }
+
+            @Override                   // Added By Ola
+            public boolean isRook() {
+                return false;
+            }
         },
         KNIGHT("N") {
             @Override                   // Added By Omer
             public boolean isKing() {
+                return false;
+            }
+
+            @Override                   // Added By Ola
+            public boolean isRook() {
                 return false;
             }
         },
@@ -96,11 +106,21 @@ public abstract class Piece {
             public boolean isKing() {
                 return false;
             }
+
+            @Override                   // Added By Ola
+            public boolean isRook() {
+                return false;
+            }
         },
         ROOK("R") {
             @Override                      // Added By Omer
             public boolean isKing() {
                 return false;
+            }
+
+            @Override                   // Added By Ola
+            public boolean isRook() {
+                return true;
             }
         },
         QUEEN("Q") {
@@ -108,11 +128,21 @@ public abstract class Piece {
             public boolean isKing() {
                 return false;
             }
+
+            @Override                   // Added By Ola
+            public boolean isRook() {
+                return false;
+            }
         },
         KING("K") {
             @Override                    // Added By Omer
             public boolean isKing() {
                 return true;
+            }
+
+            @Override                   // Added By Ola
+            public boolean isRook() {
+                return false;
             }
         };
 
@@ -129,7 +159,8 @@ public abstract class Piece {
         }
         // End Add
 
-        public abstract boolean isKing();   // Added By Omer
+        public abstract boolean isKing();// Added Omer
+        public abstract boolean isRook(); // Added Ola
     }
 
     public boolean isFirstMove() {

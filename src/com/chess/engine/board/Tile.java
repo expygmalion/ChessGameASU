@@ -7,8 +7,14 @@ import java.util.Map;
 //TODO Taj Creates the Class and provides structure and functionality
 
 public abstract class Tile {
+
+
     protected final int tileCoordinate;
+    public int getTileCoordinate() {
+        return tileCoordinate;
+    }
     private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
+
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
 
