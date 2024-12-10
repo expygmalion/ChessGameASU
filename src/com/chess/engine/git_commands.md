@@ -84,4 +84,15 @@ git merge branch_name
 3. **Push Your Changes After Committing:**  
    Never leave unpushed commits on your local machine.
 
-With these commands, you'll be ready to collaborate!
+
+### The following is the convention: 
+8 ║♜♞♝♛♚♝♞♜
+7 ║♟♟♟♟♟♟♟♟
+6 ║        
+5 ║        
+4 ║        
+3 ║        
+2 ║♙♙♙♙♙♙♙♙
+1 ║♖♘♗♕♔♗♘♖
+╚═════════
+a b c d e f g h

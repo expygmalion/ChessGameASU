@@ -58,8 +58,8 @@ public class Pawn extends Piece {
 //non-attacking move
 
             else if (currentCandidateOffset == 16 && this.isFirstMove &&
-                    (BoardUtils.SECOND_ROW[this.piecePosition] && this.getPieceAlliance().isWhite()) ||
-                    (BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getPieceAlliance().isBlack()))
+                    (BoardUtils.SEVENTH_RANK[this.piecePosition] && this.getPieceAlliance().isWhite()) ||
+                    (BoardUtils.SECOND_RANK[this.piecePosition] && this.getPieceAlliance().isBlack()))
 //the conditions above represent the positions of the black and white
             {
                 final int behindCandidateDestinationCoordinate = this.piecePosition + (this.pieceAlliance.getDirection() * 8);
