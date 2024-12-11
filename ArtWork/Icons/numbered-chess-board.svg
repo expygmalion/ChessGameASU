@@ -15,7 +15,7 @@
       <rect x="300" y="0" width="50" height="50" fill="white"/>
       <rect x="350" y="0" width="50" height="50" fill="gray"/>
     </g>
-    <g transform="translate(0, 50)">
+    <g transform="translate(0, 50 )">
       <rect x="0" y="0" width="50" height="50" fill="gray"/>
       <rect x="50" y="0" width="50" height="50" fill="white"/>
       <rect x="100" y="0" width="50" height="50" fill="gray"/>
