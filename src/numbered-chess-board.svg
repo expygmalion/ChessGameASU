@@ -6,32 +6,32 @@
   <g>
     <!-- Chessboard squares -->
     <g>
-      <rect x="0" y="0" width="50" height="50" fill="white"/>
+      <rect x="0" y="0" width="50" height="50" fill="green"/>
       <rect x="50" y="0" width="50" height="50" fill="gray"/>
       <rect x="100" y="0" width="50" height="50" fill="white"/>
       <rect x="150" y="0" width="50" height="50" fill="gray"/>
       <rect x="200" y="0" width="50" height="50" fill="white"/>
       <rect x="250" y="0" width="50" height="50" fill="gray"/>
       <rect x="300" y="0" width="50" height="50" fill="white"/>
-      <rect x="350" y="0" width="50" height="50" fill="gray"/>
+      <rect x="350" y="0" width="50" height="50" fill="green"/>
     </g>
     <g transform="translate(0, 50 )">
       <rect x="0" y="0" width="50" height="50" fill="gray"/>
-      <rect x="50" y="0" width="50" height="50" fill="white"/>
+      <rect x="50" y="0" width="50" height="50" fill="red"/>
       <rect x="100" y="0" width="50" height="50" fill="gray"/>
       <rect x="150" y="0" width="50" height="50" fill="white"/>
       <rect x="200" y="0" width="50" height="50" fill="gray"/>
       <rect x="250" y="0" width="50" height="50" fill="white"/>
-      <rect x="300" y="0" width="50" height="50" fill="gray"/>
+      <rect x="300" y="0" width="50" height="50" fill="red"/>
       <rect x="350" y="0" width="50" height="50" fill="white"/>
     </g>
     <g transform="translate(0, 100)">
       <rect x="0" y="0" width="50" height="50" fill="white"/>
       <rect x="50" y="0" width="50" height="50" fill="gray"/>
-      <rect x="100" y="0" width="50" height="50" fill="white"/>
+      <rect x="100" y="0" width="50" height="50" fill="skyblue"/>
       <rect x="150" y="0" width="50" height="50" fill="gray"/>
       <rect x="200" y="0" width="50" height="50" fill="white"/>
-      <rect x="250" y="0" width="50" height="50" fill="gray"/>
+      <rect x="250" y="0" width="50" height="50" fill="skyblue"/>
       <rect x="300" y="0" width="50" height="50" fill="white"/>
       <rect x="350" y="0" width="50" height="50" fill="gray"/>
     </g>
@@ -58,32 +58,32 @@
     <g transform="translate(0, 250)">
       <rect x="0" y="0" width="50" height="50" fill="gray"/>
       <rect x="50" y="0" width="50" height="50" fill="white"/>
-      <rect x="100" y="0" width="50" height="50" fill="gray"/>
+      <rect x="100" y="0" width="50" height="50" fill="skyblue"/>
       <rect x="150" y="0" width="50" height="50" fill="white"/>
       <rect x="200" y="0" width="50" height="50" fill="gray"/>
-      <rect x="250" y="0" width="50" height="50" fill="white"/>
+      <rect x="250" y="0" width="50" height="50" fill="skyblue"/>
       <rect x="300" y="0" width="50" height="50" fill="gray"/>
       <rect x="350" y="0" width="50" height="50" fill="white"/>
     </g>
     <g transform="translate(0, 300)">
       <rect x="0" y="0" width="50" height="50" fill="white"/>
-      <rect x="50" y="0" width="50" height="50" fill="gray"/>
+      <rect x="50" y="0" width="50" height="50" fill="red"/>
       <rect x="100" y="0" width="50" height="50" fill="white"/>
       <rect x="150" y="0" width="50" height="50" fill="gray"/>
       <rect x="200" y="0" width="50" height="50" fill="white"/>
       <rect x="250" y="0" width="50" height="50" fill="gray"/>
-      <rect x="300" y="0" width="50" height="50" fill="white"/>
+      <rect x="300" y="0" width="50" height="50" fill="red"/>
       <rect x="350" y="0" width="50" height="50" fill="gray"/>
     </g>
     <g transform="translate(0, 350)">
-      <rect x="0" y="0" width="50" height="50" fill="gray"/>
+      <rect x="0" y="0" width="50" height="50" fill="green"/>
       <rect x="50" y="0" width="50" height="50" fill="white"/>
       <rect x="100" y="0" width="50" height="50" fill="gray"/>
       <rect x="150" y="0" width="50" height="50" fill="white"/>
       <rect x="200" y="0" width="50" height="50" fill="gray"/>
       <rect x="250" y="0" width="50" height="50" fill="white"/>
       <rect x="300" y="0" width="50" height="50" fill="gray"/>
-      <rect x="350" y="0" width="50" height="50" fill="white"/>
+      <rect x="350" y="0" width="50" height="50" fill="green"/>
     </g>
   </g>
   

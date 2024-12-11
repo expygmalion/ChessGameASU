@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="&quot;fixing commit&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/gui/Table$TilePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArtWork/Icons/numbered-chess-board.svg" beforeDir="false" afterPath="$PROJECT_DIR$/ArtWork/Icons/numbered-chess-board.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Gui",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/calen/IdeaProjects/ChessGameASU-Main/ArtWork",
+    "last_opened_file_path": "C:/Users/calen/IdeaProjects/ChessGameASU-Main/ArtWork/Icons",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,6 +83,7 @@
       <recent name="com.chess.engine.Player.WhitePlayer" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\calen\IdeaProjects\ChessGameASU-Main\ArtWork\Icons" />
       <recent name="C:\Users\calen\IdeaProjects\ChessGameASU-Main\ArtWork" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -141,6 +133,7 @@
       <updated>1733706736850</updated>
       <workItem from="1733706737899" duration="1542000" />
       <workItem from="1733708311985" duration="49707000" />
+      <workItem from="1733958044317" duration="719000" />
     </task>
     <servers />
   </component>
