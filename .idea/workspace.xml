@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="">
+    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="&quot;fixing commit&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/BlackPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveTransition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/WhitePlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/gui/Table$TilePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,22 +61,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.JChess.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Gui",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/calen/IdeaProjects/ChessGameASU-Main/ArtWork",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.JChess.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Gui&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/calen/IdeaProjects/ChessGameASU-Main/ArtWork&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.chess.engine.Player" />
@@ -166,6 +148,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;fixing commit&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;fixing commit&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
