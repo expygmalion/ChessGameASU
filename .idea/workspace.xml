@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Player/BlackPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Player/MoveStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Player/MoveTransition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Player/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Player/WhitePlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,12 +131,23 @@
       <option name="presentableId" value="Default" />
       <updated>1733706736850</updated>
       <workItem from="1733706737899" duration="1542000" />
-      <workItem from="1733708311985" duration="48052000" />
+      <workItem from="1733708311985" duration="48831000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

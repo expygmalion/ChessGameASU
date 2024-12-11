@@ -1,6 +1,6 @@
 package com.chess.gui;
 
-import com.chess.engine.Player.MoveTransition;
+import com.chess.engine.player.MoveTransition;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
