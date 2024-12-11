@@ -1,9 +1,9 @@
 package com.chess.engine.board;
 
 import com.chess.engine.Alliance;
-import com.chess.engine.player.BlackPlayer;
+import com.chess.engine.player.BPlayer;
 import com.chess.engine.player.Player;
-import com.chess.engine.player.WhitePlayer;
+import com.chess.engine.player.WPlayer;
 import com.chess.engine.pieces.*;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -23,8 +23,8 @@ public class Board {
     // End Add
 
     // Added Omer
-    private final WhitePlayer whiteplayer;
-    private final BlackPlayer blackplayer;
+    private final WPlayer whiteplayer;
+    private final BPlayer blackplayer;
     private final Player currentPlayer;
     // End Add
 
@@ -40,8 +40,8 @@ public class Board {
         // End Add
 
         // Added Omer
-        this.whiteplayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-        this.blackplayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.whiteplayer = new WPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.blackplayer = new BPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.currentPlayer=builder.nextMoveMaker.choosePlayer(this.whiteplayer,this.blackplayer); // Rawan
         // End Add
 

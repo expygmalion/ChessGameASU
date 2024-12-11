@@ -6,6 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/BlackPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/MoveTransition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Player/WhitePlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/gui/Table$TilePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Board.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +81,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.JChess.executor": "Run",
+    "Application.JChess.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Gui",
     "kotlin-language-version-configured": "true",
@@ -131,7 +149,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733706736850</updated>
       <workItem from="1733706737899" duration="1542000" />
-      <workItem from="1733708311985" duration="48831000" />
+      <workItem from="1733708311985" duration="49707000" />
     </task>
     <servers />
   </component>
