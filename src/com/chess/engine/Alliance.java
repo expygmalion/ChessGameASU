@@ -1,9 +1,9 @@
 package com.chess.engine;
 
 
-import com.chess.engine.player.BPlayer;
-import com.chess.engine.player.Player;
-import com.chess.engine.player.WPlayer;
+import com.chess.engine.user.BPlayer;
+import com.chess.engine.user.Player;
+import com.chess.engine.user.WPlayer;
 
 public enum Alliance {
     WHITE {

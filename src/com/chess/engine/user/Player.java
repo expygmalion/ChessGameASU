@@ -1,4 +1,4 @@
-package com.chess.engine.player;
+package com.chess.engine.user;
 
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
