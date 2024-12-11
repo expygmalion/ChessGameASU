@@ -1,4 +1,5 @@
 package com.chess.gui;
+
 import com.chess.engine.Player.MoveTransition;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
@@ -84,6 +85,8 @@ public class Table {
                 add(tilePanel);
             }
             setPreferredSize(BoardPanelDimensions);
+            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            setBackground(Color.BLACK);
             validate();
         }
         public void drawBoard(final Board board) {
@@ -108,55 +111,54 @@ public class Table {
             // TODO Step 2: Add Mouse Listener
             //Taj Added
             addMouseListener(new MouseListener() {
-                @Override
                 public void mouseClicked(final MouseEvent e) {
                     if (isRightMouseButton(e)) {
-                        // Reset everything on right-click
+                        // Right-click resets selection
                         sourceTile = null;
-                        destinationTile = null;
                         humanMovedPiece = null;
-                    } else if (isLeftMouseButton(e)) {
-                        if (sourceTile == null) {  // Select the source tile
+                    } else if (isLeftMouseButton(e)){
+                        if (sourceTile == null) {
+                            // First click: select the piece
                             sourceTile = CHESSBOARD.getTile(tileID);
                             humanMovedPiece = sourceTile.getPiece();
                             if (humanMovedPiece == null) {
-                                System.out.println("No piece at source tile!");
-                                sourceTile = null;  // Reset if no piece
-                            } else {
-                                System.out.println("Selected piece: " + humanMovedPiece.toString());  // Debugging
+                                sourceTile = null;
                             }
-                        } else {  // Create and execute move when destination is selected
+                        } else {
+                            // Second click: attempt to move
                             destinationTile = CHESSBOARD.getTile(tileID);
-                            final Move move = Move.MoveFactory.createMove(CHESSBOARD,
-                                    sourceTile.getTileCoordinate(),
-                                    destinationTile.getTileCoordinate());
-                            System.out.println("Move created: " + sourceTile.getTileCoordinate() + " to " + destinationTile.getTileCoordinate());  // Debugging
-                            final MoveTransition transition = CHESSBOARD.currentPlayer().makeMove(move);
 
-                            // Check if the move is legal and update board
-                            if (transition.getMoveStatus().isDone()) {
-                                System.out.println("Move succeeded!");  // Debugging
-                                CHESSBOARD = transition.getTransitionBoard();  // Update the board
+                            final Move move = Move.MoveFactory.createMove(
+                                    CHESSBOARD,
+                                    sourceTile.getTileCoordinate(),
+                                    destinationTile.getTileCoordinate()
+                            );
+
+                            // Explicitly check for NULL_MOVE
+                            if (move != Move.NULL_MOVE) {
+                                final MoveTransition transition = CHESSBOARD.currentPlayer().makeMove(move);
+
+                                if (transition.getMoveStatus().isDone()) {
+                                    CHESSBOARD = transition.getTransitionBoard();
+                                    System.out.println("Move successful: " + move);
+                                } else {
+                                    System.out.println("Invalid move: " + move);
+                                    System.out.println("Move status: " + transition.getMoveStatus());
+                                }
                             } else {
-                                System.out.println("Move failed! Illegal move or check");  // Debugging
+                                System.out.println("No legal move found between " +
+                                        sourceTile.getTileCoordinate() + " and " +
+                                        destinationTile.getTileCoordinate());
                             }
 
-                            // Reset after move
+                            // Reset selection
                             sourceTile = null;
                             destinationTile = null;
                             humanMovedPiece = null;
                         }
 
-                        // Redraw the board after the move
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                boardPanel.drawBoard(CHESSBOARD);  // Refresh board
-                            }
-                        });
-
-                }
-
+                        SwingUtilities.invokeLater(() -> boardPanel.drawBoard(CHESSBOARD));
+                    }
                 }
 
                 @Override
