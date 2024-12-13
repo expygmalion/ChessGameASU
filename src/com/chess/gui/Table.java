@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static javax.swing.SwingUtilities.isLeftMouseButton; // imported from API
@@ -187,6 +189,7 @@ public class Table {
         public void drawTile(final Board board) {
             assignTileColor();
             assignTilePieceIcon(board);
+            // highlightLegals(board);
             validate();
             repaint();
         }
@@ -203,22 +206,49 @@ public class Table {
                 }
             }
         }
+        /* private void highlightLegals(final Board board) {
+            if(true) {
+                for(final Move move : pieceLegalMoves(board)) {
+                    if(move.getDestinationCoordinate() == this.tileID) {
+                        try {
+                            OverlayLayout overlay = new OverlayLayout(this); // Set Overlay layout for Tile Panel
+                            BufferedImage image = ImageIO.read(new File("ArtWork/Icons/Dot.png"));
+                            add(new JLabel(new ImageIcon(image)));   // Add the dot on top of this tile panel
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }*/
+
+
+        private Collection<Move> pieceLegalMoves(final Board board) {
+            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == board.currentPlayer().getAlliance()) {
+                return humanMovedPiece.calculateLegalMoves(board);}
+            return Collections.emptyList();
+        }
+
         // Not preferred perhaps
         private void assignTileColor() {
-            // Defining the colors of the light and dark tiles (you can modify the colors here)
-            final Color lightTileColor = new Color(240, 217, 181);  // Chess.com light square color (hex #F0D9B5)
-            final Color darkTileColor = new Color(121, 85, 61);  // Chess.com dark square color (hex #795533)
+            final Color lightTileColor = new Color(238, 238, 210);  // Chess.com light square color (hex #F0D9B5)
+            final Color darkTileColor = new Color(118, 150, 86);   // Chess.com dark square color (hex #795533)
+            final Color highlightedTileColor = new Color(175, 175, 175);  // Highlight color (Green)
 
-            // Determine the row and column for the current tile
             int row = tileID / BoardUtils.NUM_TILES_PER_ROW;
             int col = tileID % BoardUtils.NUM_TILES_PER_ROW;
 
-            // Assign color based on the parity of the sum of row and column (alternates colors)
-            if ((row + col) % 2 == 0) {
+            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
+                for(final Move move : pieceLegalMoves(CHESSBOARD) ) {
+                    if(move.getDestinationCoordinate() == this.tileID)
+                        setBackground(highlightedTileColor);  // highlight the legal moves
+                }
+            } else if ((row + col) % 2 == 0){
                 setBackground(lightTileColor); // Light square
             } else {
                 setBackground(darkTileColor); // Dark square
             }
         }
+
     }
 }

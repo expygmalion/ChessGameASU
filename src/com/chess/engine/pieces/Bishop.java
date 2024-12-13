@@ -33,6 +33,7 @@ public class Bishop extends Piece {
                         isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
                 }
+                candidateDestinationCoordinate += candidateCoordinateOffset;
 
 
                 if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
