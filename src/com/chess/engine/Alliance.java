@@ -25,7 +25,7 @@ public enum Alliance {
         // Added Rawan
         @Override
         public Player choosePlayer(WPlayer whiteplayer, BPlayer blackplayer) {
-            return blackplayer;
+            return whiteplayer;
         }  // End Add
 
     },
@@ -49,7 +49,7 @@ public enum Alliance {
         @Override
         public Player choosePlayer(final WPlayer whiteplayer,
                                    final BPlayer blackplayer) {
-            return whiteplayer;
+            return blackplayer;
         } // End Add
     };
 

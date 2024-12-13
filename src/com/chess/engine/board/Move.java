@@ -98,7 +98,21 @@ public abstract class Move {
         // Added Ola
         @Override
         public Board execute() {
-            return null;
+            final Builder builder = new Builder();
+
+            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                if (!this.movedPiece.equals(piece)) {
+                    builder.setPiece(piece);
+                }
+            }
+            for (final Piece piece : this.board.currentPlayer().getopponent().getActivePieces()) {
+                if(!this.attackedPiece.equals(piece)) {
+                    builder.setPiece(piece);
+                }
+            }
+            builder.setPiece(this.movedPiece.movePiece(this));
+            builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance());
+            return builder.build();
         }
         @Override
         public Piece getAttackedPiece() {

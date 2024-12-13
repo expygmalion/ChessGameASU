@@ -46,7 +46,7 @@ public class BoardUtils {
     }
 
     public static boolean isValidTileCoordinate(int coordinate) {
-        return coordinate >= 0 && coordinate <= 64;
+        return coordinate >= 0 && coordinate <= NUM_TILES;
     }
 
 }
