@@ -39,7 +39,8 @@ public abstract class Piece {
 
     // we use integer instead of int because it is needed for collections,
     // we ensure compatibility with guava Library and other libs
-    public Integer getPiecePosition() { return this.piecePosition; }
+    public Integer getPiecePosition() {
+        return this.piecePosition; }
 
     public boolean isFirstMove() {
         return isFirstMove;

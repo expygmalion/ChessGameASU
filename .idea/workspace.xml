@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="fixed pieceType constructor&#10;  added pieceValue as parameter and gave each piece a value">
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/BoardEvaluator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MoveStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/StandardBoardEvaluater.java" afterDir="false" />
+    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="methods determines Player score &#10;checkmate ,check,castled,mobility.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MoveStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MoveStrategy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734197870623</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="methods determines Player score &#10;checkmate ,check,castled,mobility.">
+      <option name="closed" value="true" />
+      <created>1734202438651</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734202438651</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +218,8 @@
     <MESSAGE value="execute method implementation" />
     <MESSAGE value="edit" />
     <MESSAGE value="fixed pieceType constructor&#10;  added pieceValue as parameter and gave each piece a value" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed pieceType constructor&#10;  added pieceValue as parameter and gave each piece a value" />
+    <MESSAGE value="methods determines Player score &#10;checkmate ,check,castled,mobility." />
+    <option name="LAST_COMMIT_MESSAGE" value="methods determines Player score &#10;checkmate ,check,castled,mobility." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -223,7 +230,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java</url>
-          <line>13</line>
+          <line>14</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
