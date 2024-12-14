@@ -18,11 +18,6 @@ public abstract class Piece {
     private final int cachedHashcode;
 
 
-
-    public PieceType getPieceType() {
-        return this.pieceType;
-    }
-
     public Piece(final PieceType pieceType, // Added by Omer
                  final int piecePosition,
                  final Alliance pieceAlliance) {
@@ -33,8 +28,27 @@ public abstract class Piece {
         //TODO more work here???
         this.isFirstMove = false; //Ahmed Added
     }
+    public Alliance getPieceAlliance() {
+        return this.pieceAlliance;
+    }
+    public PieceType getPieceType() {
+        return this.pieceType;
+    }
+    public abstract Collection<Move> calculateLegalMoves(final Board board);
+    public abstract Piece movePiece(final Move move); // Added Rawan
 
-        // Added Rawan
+    // we use integer instead of int because it is needed for collections,
+    // we ensure compatibility with guava Library and other libs
+    public Integer getPiecePosition() { return this.piecePosition; }
+
+    public boolean isFirstMove() {
+        return isFirstMove;
+    }
+    public int getPieceValue() {
+        return this.pieceType.getPieceValue();
+    }
+
+    // Added Rawan
     private int computeHashCode(){
         int result = pieceType.hashCode();
         result = 31 * result + pieceAlliance.hashCode();
@@ -66,20 +80,10 @@ public abstract class Piece {
     } // End Add
 
 
-    public Alliance getPieceAlliance() {
-        return this.pieceAlliance;
-    }
-
-    public abstract Collection<Move> calculateLegalMoves(final Board board);
-    public abstract Piece movePiece(final Move move); // Added Rawan
-
-    // we use integer instead of int because it is needed for collections,
-    // we ensure compatibility with guava Library and other libs
-    public Integer getPiecePosition() { return this.piecePosition; }
 
     // Ahmed Added pieces
     public enum PieceType{
-        PAWN("P") {
+        PAWN(100, "P") {
             @Override                   // Added By Omer
             public boolean isKing() {
                 return false;
@@ -90,7 +94,7 @@ public abstract class Piece {
                 return false;
             }
         },
-        KNIGHT("N") {
+        KNIGHT(300, "N") {
             @Override                   // Added By Omer
             public boolean isKing() {
                 return false;
@@ -101,7 +105,7 @@ public abstract class Piece {
                 return false;
             }
         },
-        BISHOP("B") {
+        BISHOP(330,"B") {
             @Override                    // Added By Omer
             public boolean isKing() {
                 return false;
@@ -112,7 +116,7 @@ public abstract class Piece {
                 return false;
             }
         },
-        ROOK("R") {
+        ROOK(500,"R") {
             @Override                      // Added By Omer
             public boolean isKing() {
                 return false;
@@ -123,7 +127,7 @@ public abstract class Piece {
                 return true;
             }
         },
-        QUEEN("Q") {
+        QUEEN(900,"Q") {
             @Override                    // Added By Omer
             public boolean isKing() {
                 return false;
@@ -134,7 +138,7 @@ public abstract class Piece {
                 return false;
             }
         },
-        KING("K") {
+        KING(10000,"K") {
             @Override                    // Added By Omer
             public boolean isKing() {
                 return true;
@@ -149,7 +153,7 @@ public abstract class Piece {
 
 
         private String pieceName;
-        PieceType(final String pieceName){
+        PieceType(final int pieceValue,final String pieceName){
             this.pieceName = pieceName;
         }
         // Added Ahmed
@@ -163,7 +167,5 @@ public abstract class Piece {
         public abstract boolean isRook(); // Added Ola
     }
 
-    public boolean isFirstMove() {
-        return isFirstMove;
-    }
+
 }
