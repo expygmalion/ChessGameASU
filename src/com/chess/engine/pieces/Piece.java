@@ -44,8 +44,10 @@ public abstract class Piece {
     public boolean isFirstMove() {
         return isFirstMove;
     }
+    //added rawan
     public int getPieceValue() {
         return this.pieceType.getPieceValue();
+        //end
     }
 
     // Added Rawan
