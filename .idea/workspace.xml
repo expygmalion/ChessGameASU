@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="&quot;fixing commit&quot;">
+    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="max method                              &#10;similar implementation of min">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,6 +133,23 @@
       <workItem from="1733958044317" duration="719000" />
       <workItem from="1733964774583" duration="2473000" />
     </task>
+    <task id="LOCAL-00001" summary="minimax(min,max)           &#10; max method structure and implementation min method that goes through all legal moves and score them and get the lowest value">
+      <option name="closed" value="true" />
+      <created>1734158026266</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734158026266</updated>
+    </task>
+    <task id="LOCAL-00002" summary="max method                              &#10;similar implementation of min">
+      <option name="closed" value="true" />
+      <created>1734158560592</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734158560592</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +169,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;fixing commit&quot;" />
     <MESSAGE value="basic structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="minimax(min,max)           &#10; max method structure and implementation min method that goes through all legal moves and score them and get the lowest value" />
+    <MESSAGE value="max method                              &#10;similar implementation of min" />
+    <option name="LAST_COMMIT_MESSAGE" value="max method                              &#10;similar implementation of min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
