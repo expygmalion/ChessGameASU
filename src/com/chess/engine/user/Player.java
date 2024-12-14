@@ -81,7 +81,7 @@ public abstract class Player {
         return false;
     }
     //added rawan
-    public boolean Z {
+    public boolean isInStaleMate(){
         return !this.isInCheck && !hasEscapeMoves();
     }
     //end rawan

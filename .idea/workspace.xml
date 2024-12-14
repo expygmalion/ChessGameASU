@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="updated move strategy interface to only tack the board into account">
+    <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="added isInStaleMate() to player">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/user/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/user/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/user/ai/StandardBoardEvaluater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/user/ai/StandardBoardEvaluate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734204071564</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added isInStaleMate() to player">
+      <option name="closed" value="true" />
+      <created>1734205905123</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734205905123</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +238,8 @@
     <MESSAGE value="methods determines Player score &#10;checkmate ,check,castled,mobility." />
     <MESSAGE value="methods determines Player score&#10;checkmate ,check,castled,mobility." />
     <MESSAGE value="updated move strategy interface to only tack the board into account" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated move strategy interface to only tack the board into account" />
+    <MESSAGE value="added isInStaleMate() to player" />
+    <option name="LAST_COMMIT_MESSAGE" value="added isInStaleMate() to player" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -235,11 +248,6 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/chess/engine/user/ai/MiniMax.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

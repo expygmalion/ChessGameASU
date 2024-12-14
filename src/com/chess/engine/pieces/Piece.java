@@ -47,7 +47,7 @@ public abstract class Piece {
     }
     //added rawan
     public int getPieceValue() {
-        return this.pieceType.getPieceValue();
+        return this.getPieceValue();   //this.pieceType.getPieceValue() gave me errors.
         //end
     }
 

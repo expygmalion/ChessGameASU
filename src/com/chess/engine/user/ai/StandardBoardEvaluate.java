@@ -4,7 +4,7 @@ import com.chess.engine.board.Board;
 import com.chess.engine.pieces.Piece;
 import com.chess.engine.user.Player;
 
-public class StandardBoardEvaluater implements BoardEvaluator {
+public class StandardBoardEvaluate implements BoardEvaluator {
 
     private static final int CHECK_BONUS=50;
     private static final int CHECK_MATE_BONUS =10000 ;

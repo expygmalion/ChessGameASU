@@ -12,7 +12,7 @@ public class MiniMax implements MoveStrategy{
     private final int searchDepth;
 
     public MiniMax(final int searchDepth){
-        this.boardEvaluator=new StandardBoardEvaluater();
+        this.boardEvaluator=new StandardBoardEvaluate();
         this.searchDepth=searchDepth;
     }
 
@@ -82,7 +82,7 @@ return bestMove;
  //game over
     private static boolean isEndGameScenario(final Board board) {
         return board.currentPlayer().isInCheckMate()||
-                board.currentPlayer().isStaleMate();
+                board.currentPlayer().isInStaleMate() ;
     }
 
     public int max(final Board board,
