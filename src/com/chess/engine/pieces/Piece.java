@@ -25,13 +25,14 @@ public abstract class Piece {
 
     public Piece(final PieceType pieceType, // Added by Omer
                  final int piecePosition,
-                 final Alliance pieceAlliance) {
+                 final Alliance pieceAlliance,
+                 final boolean isFirstMove) {
         this.pieceType = pieceType;
         this.piecePosition = piecePosition;
         this.pieceAlliance = pieceAlliance;
         this.cachedHashcode = computeHashCode();
         //TODO more work here???
-        this.isFirstMove = false; //Ahmed Added
+        this.isFirstMove = isFirstMove; //Ahmed Added
     }
 
         // Added Rawan
@@ -148,6 +149,7 @@ public abstract class Piece {
 
 
 
+
         private String pieceName;
         PieceType(final String pieceName){
             this.pieceName = pieceName;
@@ -164,6 +166,6 @@ public abstract class Piece {
     }
 
     public boolean isFirstMove() {
-        return isFirstMove;
+        return this.isFirstMove;
     }
 }

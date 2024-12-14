@@ -1,6 +1,7 @@
 package com.chess.engine.pieces;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.chess.engine.Alliance;
@@ -12,94 +13,104 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.Collection;
 
-
-//TODO Mishkat creates the class King and provides structure and functionality
-// Subsequent Additions are prevalent for advanced functionalities
-
+// King class
 public class King extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
-//    represent the diagonal moves from its position
-//    •	Diagonal moves: -9, -7, 7, 9.
-//	•	Horizontal moves: -1, 1.
-//	•	Vertical moves: -8, 8.
+    private final boolean isCastled;
+    private final boolean kingSideCastleCapable;
+    private final boolean queenSideCastleCapable;
 
-    public King(final int piecePostion,final Alliance pieceAlliance) {
-        super(PieceType.KING, piecePostion, pieceAlliance); // Omer added a new parameter (piecetype)
+    // Constructor for King
+    public King(final int piecePosition, final Alliance pieceAlliance, final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
+        super(PieceType.KING, piecePosition, pieceAlliance, true);
+        this.isCastled = false;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
     }
-//    override
 
-    // Added Ahmed
+    public King(final Alliance alliance,
+                final int piecePosition,
+                final boolean isFirstMove,
+                final boolean isCastled,
+                final boolean kingSideCastleCapable,
+                final boolean queenSideCastleCapable) {
+        super(PieceType.KING, piecePosition, alliance, isFirstMove);
+        this.isCastled = isCastled;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
+    }
+
+    public boolean isKingSideCastleCapable() {
+        return this.kingSideCastleCapable;
+    }
+
+    public boolean isQueenSideCastleCapable() {
+        return this.queenSideCastleCapable;
+    }
+
+    public boolean isCastled() {
+        return this.isCastled;
+    }
+
     @Override
     public String toString(){
         return PieceType.KING.toString();
     }
-    //  End Add
 
-    // Added Rawan
     @Override
     public King movePiece(final Move move) {
-        return new King (move.getDestinationCoordinate(),
-                move.getMovedPiece().getPieceAlliance());
-    } // End Add
-//    implement move method
+        return new King(this.pieceAlliance, move.getDestinationCoordinate(), false, move.isCastlingMove(), false, false);
+    }
 
+    // Calculate legal moves for King
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
 
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int currentCadidateOffset : CANDIDATE_MOVE_COORDINATE) {
-            final int candidateDestinationCoordinate = this.piecePosition + currentCadidateOffset;
+        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
+            final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
 
-            if (isFirstColumnExclusion(this.piecePosition,currentCadidateOffset)||
-                    isEighthColumnExclusion(this.piecePosition,currentCadidateOffset)) {
+            // Checking for exclusions based on position (first and eighth columns)
+            if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) || isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
                 continue;
             }
 
+            final Piece pieceAtDestination = board.getPiece(candidateDestinationCoordinate);
 
-            if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
-
-                final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-//                ensures the destination coordinate lies within the valid board range (0–63 for a chessboard).
-
-                if (!candidateDestinationTile.isTileOccupied()) {
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-
-                } else {
-                    final Piece pieceAtDestination = candidateDestinationTile.getPiece();
-                    final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
-
-                    if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
-                    }
-//                    	If it’s an opponent’s piece, creates an AttackMove object to represent a capture.
-
+            if (pieceAtDestination == null) {
+                legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+            } else {
+                final Alliance pieceAtDestinationAlliance = pieceAtDestination.getPieceAlliance();
+                if (this.pieceAlliance != pieceAtDestinationAlliance) {
+                    legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                 }
-
-
             }
-
-
         }
 
+        // Castling logic
+        if (this.isFirstMove() && !this.isCastled) {
+            if (this.kingSideCastleCapable) {
+                // Logic to check if castling is possible (no pieces between King and Rook)
+                // Add castling move to legalMoves
+            }
+            if (this.queenSideCastleCapable) {
+                // Logic to check if castling is possible (no pieces between King and Rook)
+                // Add castling move to legalMoves
+            }
+        }
 
-        return ImmutableList.copyOf(legalMoves);
-//        ensuring that it cannot be modified after calculation.
-
+        return Collections.unmodifiableList(legalMoves);
     }
 
-
-    private static boolean isFirstColumnExclusion (final int currentPosition , final int candidateOffset){
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset==-9|| candidateOffset==-1 ||
-                candidateOffset==7 );
-//        	•	-9: Top-left diagonal.
-//	•	-1: Horizontal left move.
-//	•	7: Bottom-left diagonal.
+    // Check if the move is on the first column
+    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7);
     }
-    private static boolean isEighthColumnExclusion (final int currentPosition , final int candidateOffset) {
+
+    // Check if the move is on the eighth column
+    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == 1 || candidateOffset == 9 || candidateOffset == -7);
-
-
     }
 }

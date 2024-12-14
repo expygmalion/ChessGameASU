@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import javax.swing.border.Border;
 
 import static javax.swing.SwingUtilities.isLeftMouseButton; // imported from API
 import static javax.swing.SwingUtilities.isRightMouseButton; // imported from API
@@ -30,6 +31,7 @@ public class Table {
     private final static Dimension OuterFrameDimensions = new Dimension(600,600);
     private final static Dimension BoardPanelDimensions = new Dimension(400, 350);
     private final static Dimension TilePanelDimensions = new Dimension(10, 10);
+    private final static int moderator = 10;
     private Board CHESSBOARD; // should not be final
     private static String ICONPATH = "ArtWork/Icons/";
     private Tile sourceTile;
@@ -189,7 +191,6 @@ public class Table {
         public void drawTile(final Board board) {
             assignTileColor();
             assignTilePieceIcon(board);
-            // highlightLegals(board);
             validate();
             repaint();
         }
@@ -231,24 +232,26 @@ public class Table {
 
         // Not preferred perhaps
         private void assignTileColor() {
-            final Color lightTileColor = new Color(238, 238, 210);  // Chess.com light square color (hex #F0D9B5)
-            final Color darkTileColor = new Color(118, 150, 86);   // Chess.com dark square color (hex #795533)
-            final Color highlightedTileColor = new Color(175, 175, 175);  // Highlight color (Green)
+            final Color lightTileColor = new Color(238, 238, 210);
+            final Color darkTileColor = new Color(118, 150, 86);
+            final Border highlightBorder = BorderFactory.createLineBorder(new Color(255, 0, 0), 3);
 
             int row = tileID / BoardUtils.NUM_TILES_PER_ROW;
             int col = tileID % BoardUtils.NUM_TILES_PER_ROW;
 
-            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
-                for(final Move move : pieceLegalMoves(CHESSBOARD) ) {
-                    if(move.getDestinationCoordinate() == this.tileID)
-                        setBackground(highlightedTileColor);  // highlight the legal moves
+            if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
+                for (final Move move : pieceLegalMoves(CHESSBOARD)) {
+                    if (move.getDestinationCoordinate() == this.tileID) {
+                        setBorder(highlightBorder); // Add a border for the highlight
+                        setBackground((row + col) % 2 == 0 ? lightTileColor : darkTileColor);
+                        return;
+                    }
                 }
-            } else if ((row + col) % 2 == 0){
-                setBackground(lightTileColor); // Light square
-            } else {
-                setBackground(darkTileColor); // Dark square
             }
+            setBorder(null); // Remove border when not highlighted
+            setBackground((row + col) % 2 == 0 ? lightTileColor : darkTileColor);
         }
+
 
     }
 }

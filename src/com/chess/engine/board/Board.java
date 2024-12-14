@@ -15,7 +15,7 @@ import java.util.*;
 //TODO Omer adds the functionalities requires for the Player Interactions
 
 public class Board {
-
+private final Map<Integer, Piece> boardConfig;
     private final List<Tile> gameBoard;
     // Added Ahmed
     private final Collection<Piece> whitePieces;
@@ -32,6 +32,7 @@ public class Board {
     private Board(Builder builder){
 
         this.gameBoard = createGameBoard(builder);
+        this.boardConfig = Collections.unmodifiableMap(builder.boardConfig);
         // Added Ahmed
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard,Alliance.BLACK);
@@ -132,7 +133,7 @@ public class Board {
         builder.setPiece(new Knight(1, Alliance.BLACK));
         builder.setPiece (new Bishop(2, Alliance.BLACK));
         builder.setPiece(new Queen(3, Alliance.BLACK));
-        builder.setPiece(new King(4, Alliance.BLACK));
+        builder.setPiece(new King(4, Alliance.BLACK, true, true));
         builder.setPiece (new Bishop(5, Alliance.BLACK));
         builder.setPiece(new Knight(6, Alliance.BLACK));
         builder.setPiece(new Rook(7, Alliance.BLACK));
@@ -152,7 +153,7 @@ public class Board {
         builder.setPiece(new Knight(57, Alliance.WHITE));
         builder.setPiece(new Bishop(58, Alliance.WHITE));
         builder.setPiece(new Queen(59, Alliance.WHITE));
-        builder.setPiece(new King(60, Alliance.WHITE));
+        builder.setPiece(new King(60, Alliance.WHITE, true, true));
         builder.setPiece(new Bishop(61, Alliance.WHITE));
         builder.setPiece(new Knight(62, Alliance.WHITE));
         builder.setPiece(new Rook(63, Alliance.WHITE));
@@ -175,9 +176,13 @@ public class Board {
         return Iterables.unmodifiableIterable(Iterables.concat(this.whiteplayer.getlegalMoves(), this.blackplayer.getlegalMoves()));
     }
 
+    public Piece getPiece(final int coordinate) {
+        return this.boardConfig.get(coordinate);
+    }
+
     // Added Ahmed
     public static class Builder{
-        Map<Integer, Piece>   boardConfig;
+        Map<Integer, Piece>  boardConfig;
         Alliance nextMoveMaker;
         Pawn enPassantPawn;
 

@@ -10,12 +10,20 @@ public abstract class Move {
     final Board board;
     final Piece movedPiece;
     final int destinationCoordinate;
+    protected final boolean isFirstMove;
     public static final Move NULL_MOVE = new NullMove();
 
-    public Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+    private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
         this.board = board;
         this.movedPiece = movedPiece;
         this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = (movedPiece != null) ? movedPiece.isFirstMove() : false;  // Prevent NullPointerException
+    }
+    private Move(final Board board, final int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = null;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = false;
     }
 
     @Override
@@ -26,6 +34,32 @@ public abstract class Move {
         result = prime * result + this.movedPiece.hashCode();
         return result;
     }
+    // Create getters:
+
+    public Board getBoard() {
+        return this.board;
+    }
+    public int getDestinationCoordinate() {
+        return destinationCoordinate;
+    }
+
+    public Piece getMovedPiece() {
+        return this.movedPiece;
+    }
+    public boolean isAttack (){
+        return false;
+    }
+    public boolean isCastlingMove(){
+        return false;
+    }
+    public Piece getAttackedPiece(){
+        return null;
+    }
+
+
+
+
+    // End getter Methods
 
     @Override
     public boolean equals(final Object other) {
@@ -36,26 +70,11 @@ public abstract class Move {
             return false;
         }
         final Move otherMove = (Move) other;
-        return getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+        return getCurrentCoordinate() == otherMove.getDestinationCoordinate() &&
+        getDestinationCoordinate() == otherMove.getDestinationCoordinate()
                 && getMovedPiece() == otherMove.getMovedPiece();
     }
 
-    public int getDestinationCoordinate() {
-        return destinationCoordinate;
-    }
-
-    public Piece getMovedPiece() {
-        return this.movedPiece;
-    }
-    public boolean isAttack (){
-        return true;
-    }
-    public boolean isCastlingMove(){
-        return false;
-    }
-    public Piece getAttackedPiece(){
-        return null;
-    }
 
 
 
@@ -226,18 +245,28 @@ public abstract class Move {
         @Override
         public Board execute() {
             final Builder builder = new Builder();
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
-                if (!this.movedPiece.equals(piece) && this.castleRook.equals(piece)) {
-                    builder.setPiece(piece);
-                }
-            }
+
+            // Retain all opponent pieces
             for (final Piece piece : this.board.currentPlayer().getopponent().getActivePieces()) {
                 builder.setPiece(piece);
             }
+
+            // Retain all allied pieces except the king and rook involved in castling
+            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                if (!piece.equals(this.movedPiece) && !piece.equals(this.castleRook)) {
+                    builder.setPiece(piece);
+                }
+            }
+
+            // Move the king
             builder.setPiece(this.movedPiece.movePiece(this));
-            //todo look into first move on normal pieces
+
+            // Move the rook
             builder.setPiece(new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance()));
+
+            // Update the move maker
             builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance());
+
             return builder.build();
         } // End Add
     } // End Add
@@ -313,6 +342,13 @@ public abstract class Move {
             return NULL_MOVE;
         }
     } // End Add
+
+    public static class MajorAttackMove extends  AttackMove{
+
+        public MajorAttackMove(final Board board, final Piece movedPiece, final int destinationCoordinate, final Piece attackedPiece) {
+            super(board, movedPiece, destinationCoordinate, attackedPiece);
+        }
+    }
     // Added Rawan
     private int getCurrentCoordinate() {
         return this.getMovedPiece().getPiecePosition();
