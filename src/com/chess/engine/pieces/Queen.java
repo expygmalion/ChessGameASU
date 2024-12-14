@@ -19,6 +19,10 @@ public class Queen extends Piece {
     public Queen(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.QUEEN, piecePosition, pieceAlliance, true); //Omer added a new parameter (piecetype)
     }
+    public Queen(int piecePosition, Alliance pieceAlliance, final boolean isFirstMove) {
+        super(PieceType.QUEEN, piecePosition, pieceAlliance, isFirstMove);
+    }
+
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
