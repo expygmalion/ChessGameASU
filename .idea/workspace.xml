@@ -6,24 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bd6a58e1-7c02-4a12-a157-24e663f3eb30" name="Changes" comment="&quot;fixing commit&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/Alliance$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$AttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$AttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$KingSideCastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$KingSideCastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$MajorMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$MajorMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$MoveFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$MoveFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$NullMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$NullMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnAttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$PawnMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$QueenSideCastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move$QueenSideCastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/com/chess/engine/board/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/BoardUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/board/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/pieces/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -74,27 +57,29 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2pxTTP7GrOs9z4kzFj9r5RvAXLh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.JChess.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Gui&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Projects/java/uni/ChessGame/ArtWork/Icons&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.JChess.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "minimax",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Projects/java/uni/ChessGame/ArtWork/Icons",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.chess.engine.Player" />
