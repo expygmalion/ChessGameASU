@@ -80,6 +80,11 @@ public abstract class Player {
     public boolean isCastled(){
         return false;
     }
+    //added rawan
+    public boolean Z {
+        return !this.isInCheck && !hasEscapeMoves();
+    }
+    //end rawan
 
     protected boolean hasEscapeMoves(){
         for(final Move move : this.legalMoves){
