@@ -1,5 +1,8 @@
 package com.chess.engine.board;
 
+import javax.swing.text.Position;
+import java.util.*;
+
 // TODO Taj creates the BoardUtils Class and provides structure and functionality
 public class BoardUtils {
 
@@ -22,6 +25,12 @@ public class BoardUtils {
     public static final boolean[] FIRST_RANK = initRow(56);
     public static final int NUM_TILES = 64;
     public static final int NUM_TILES_PER_ROW = 8;
+    public static final int START_TILE_INDEX = 0;
+
+    //Added for Gui Porposes: Create a generally accepted notation
+    public static final List<String> ALGEBRAIC  = initiAlgebraicNotation();
+    public final Map<String, Integer> POS_TO_CO = initPostitionToCoordinateMap();
+    // End Add
     private BoardUtils() {
         throw new RuntimeException("Cannot Instantiate An Object From This Class");
     }
@@ -47,6 +56,34 @@ public class BoardUtils {
 
     public static boolean isValidTileCoordinate(int coordinate) {
         return coordinate >= 0 && coordinate <= NUM_TILES;
+    }
+
+    private Map<String, Integer> initPostitionToCoordinateMap() {
+        final Map<String, Integer> positionToCoordinate = new HashMap<>();
+        for (int i = START_TILE_INDEX; i < NUM_TILES; i++) {
+            positionToCoordinate.put(ALGEBRAIC.get(i), i);
+        }
+        return Collections.unmodifiableMap(positionToCoordinate);
+    }
+
+    //todo come back later and fix those
+    private static List<String> initiAlgebraicNotation() {
+        return Collections.unmodifiableList(Arrays.asList(
+                "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8",
+                "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7",
+                "a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6",
+                "a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5",
+                "a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4",
+                "a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3",
+                "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
+                "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"));
+    }
+    public int getCoordinateAtPosition(final String position) {
+        return POS_TO_CO.get(position);
+    }
+
+    public static String getPositionAtCoordinate(final int coordinate) {
+        return ALGEBRAIC.get(coordinate);
     }
 
 }

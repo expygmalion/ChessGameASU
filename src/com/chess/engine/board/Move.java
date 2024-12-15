@@ -7,9 +7,9 @@ import static com.chess.engine.board.Board.*;
 
 
 public abstract class Move {
-    final Board board;
-    final Piece movedPiece;
-    final int destinationCoordinate;
+    protected final Board board;
+    protected final Piece movedPiece;
+    protected final int destinationCoordinate;
     protected final boolean isFirstMove;
     public static final Move NULL_MOVE = new NullMove();
 
@@ -27,15 +27,29 @@ public abstract class Move {
     }
 
     @Override
+    public boolean equals(final Object other) {
+        if(this == other){
+            return true;
+        }
+        if(!(other instanceof Move)){
+            return false;
+        }
+        final Move otherMove = (Move) other;
+        return getCurrentCoordinate() == otherMove.getDestinationCoordinate() &&
+                getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+                && getMovedPiece() == otherMove.getMovedPiece();
+    }
+
+    @Override
     public int hashCode(){
         final int prime = 31;
         int result = 1;
         result = prime * result + this.destinationCoordinate;
         result = prime * result + this.movedPiece.hashCode();
+        result = prime * result + this.movedPiece.getPiecePosition();
         return result;
     }
-    // Create getters:
-
+    // Taj Add: Create getters:
     public Board getBoard() {
         return this.board;
     }
@@ -54,26 +68,8 @@ public abstract class Move {
     }
     public Piece getAttackedPiece(){
         return null;
-    }
+    }// End getter Methods
 
-
-
-
-    // End getter Methods
-
-    @Override
-    public boolean equals(final Object other) {
-        if(this == other){
-            return true;
-        }
-        if(!(other instanceof Move)){
-            return false;
-        }
-        final Move otherMove = (Move) other;
-        return getCurrentCoordinate() == otherMove.getDestinationCoordinate() &&
-        getDestinationCoordinate() == otherMove.getDestinationCoordinate()
-                && getMovedPiece() == otherMove.getMovedPiece();
-    }
 
 
 
@@ -103,7 +99,14 @@ public abstract class Move {
                          final int destinationCoordinate) {
             super(board, movedPiece, destinationCoordinate);
         }
-
+        @Override
+        public boolean equals(final Object other) {
+            return this == other || other instanceof MajorMove && super.equals(other);
+        }
+        @Override
+        public String toString(){
+            return movedPiece.getPieceType().toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+        }
 
     }
     public static class AttackMove extends Move {

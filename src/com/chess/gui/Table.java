@@ -30,17 +30,30 @@ public class Table {
     private final BoardPanel boardPanel;
     private BoardDirection boardDirection;
 
-    private final static Dimension OuterFrameDimensions = new Dimension(600,600);
+    private final static Dimension OuterFrameDimensions = new Dimension(800,600);
     private final static Dimension BoardPanelDimensions = new Dimension(400, 350);
     private final static Dimension TilePanelDimensions = new Dimension(10, 10);
-    private final static int moderator = 10;
     private Board CHESSBOARD; // should not be final
     private static String ICONPATH = "ArtWork/Icons/";
     private Tile sourceTile;
     private Tile destinationTile;
     private Piece humanMovedPiece;
+    private final GameHistoryPanel gameHistoryPanel;
+    private final DeadPiecePanel deadPiecePanel;
+
+
+
+    public GameHistoryPanel getGameHistoryPanel() {
+        return gameHistoryPanel;
+    }
+
+    public DeadPiecePanel getDeadPiecePanel() {
+        return deadPiecePanel;
+    }
 
     public Table() {
+        this.gameHistoryPanel = new GameHistoryPanel();
+        this.deadPiecePanel = new DeadPiecePanel();
         this.gameFrame = new JFrame("Chess Game");
         this.gameFrame.setLayout(new BorderLayout());
         final JMenuBar tableMenuBar = createTableMenuBar();
@@ -51,6 +64,8 @@ public class Table {
         this.boardDirection = BoardDirection.NORMAL;
         boardPanel = new BoardPanel();
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
+        this.gameFrame.add(this.deadPiecePanel, BorderLayout.WEST);
+        this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
     }
     private JMenuBar createTableMenuBar() {
         final JMenuBar tableMenuBar = new JMenuBar();
@@ -142,6 +157,40 @@ public class Table {
             revalidate();
             repaint();
         }
+    }
+
+    public static class MoveLog {
+
+        private final List<Move> moves;
+
+        MoveLog() {
+            this.moves = new ArrayList<>();
+        }
+
+        public List<Move> getMoves() {
+            return this.moves;
+        }
+
+        void addMove(final Move move) {
+            this.moves.add(move);
+        }
+
+        public int size() {
+            return this.moves.size();
+        }
+
+        void clear() {
+            this.moves.clear();
+        }
+
+        Move removeMove(final int index) {
+            return this.moves.remove(index);
+        }
+
+        boolean removeMove(final Move move) {
+            return this.moves.remove(move);
+        }
+
     }
     public class TilePanel extends JPanel {
         private final int tileID;
@@ -274,14 +323,21 @@ public class Table {
             return Collections.emptyList();
         }
 
+
+
         // Not preferred perhaps
         private void assignTileColor() {
             final Color lightTileColor = new Color(238, 238, 210);
             final Color darkTileColor = new Color(118, 150, 86);
-            final Border highlightBorder = BorderFactory.createLineBorder(new Color(255, 0, 0), 3);
+
 
             int row = tileID / BoardUtils.NUM_TILES_PER_ROW;
             int col = tileID % BoardUtils.NUM_TILES_PER_ROW;
+            final Border highlightBorder = BorderFactory.createLineBorder(
+                    ((row + col) % 2 == 0 ?
+                            new Color(92, 0, 0) :
+                            new Color(44, 0, 0))
+                    , 3);
 
             if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
                 for (final Move move : pieceLegalMoves(CHESSBOARD)) {
@@ -292,6 +348,7 @@ public class Table {
                     }
                 }
             }
+
             setBorder(null); // Remove border when not highlighted
             setBackground((row + col) % 2 == 0 ? lightTileColor : darkTileColor);
         }
