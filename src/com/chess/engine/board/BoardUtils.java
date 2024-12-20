@@ -44,6 +44,9 @@ public class BoardUtils {
         }while (rowNumber % NUM_TILES_PER_ROW != 0);
         return row;
     }
+    public static String getPositionAtCoordinate(final int coordinate) {
+        return ALGEBRAIC_NOTATION.get(coordinate);
+    }
 
     public static boolean isValidTileCoordinate(int coordinate) {
         return coordinate >= 0 && coordinate <= NUM_TILES;

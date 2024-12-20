@@ -15,6 +15,7 @@ import java.util.*;
 //TODO Omer adds the functionalities requires for the Player Interactions
 
 public class Board {
+
 private final Map<Integer, Piece> boardConfig;
     private final List<Tile> gameBoard;
     // Added Ahmed
@@ -26,6 +27,8 @@ private final Map<Integer, Piece> boardConfig;
     private final WPlayer whiteplayer;
     private final BPlayer blackplayer;
     private final Player currentPlayer;
+//    todo <Mishkat>
+    private final Pawn enPassantPawn;
     // End Add
 
 
@@ -36,9 +39,11 @@ private final Map<Integer, Piece> boardConfig;
         // Added Ahmed
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard,Alliance.BLACK);
+        this.enPassantPawn = builder.enPassantPawn;
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
         // End Add
+//        End Add
 
         // Added Omer
         this.whiteplayer = new WPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
@@ -48,6 +53,7 @@ private final Map<Integer, Piece> boardConfig;
 
     }
     // Added Omer
+//    todo<Mishkat>
     public Player whitePlayer(){
         return this.whiteplayer;
     }
@@ -56,6 +62,10 @@ private final Map<Integer, Piece> boardConfig;
     }
     public Player currentPlayer(){
         return this.currentPlayer;
+    }
+    public Pawn getEnPassantPawn(){
+        return this.enPassantPawn;
+//        End Add
     }
     public Collection<Piece> getBlackPieces() {
         return this.blackPieces;
