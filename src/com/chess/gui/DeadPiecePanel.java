@@ -39,7 +39,7 @@ class DeadPiecePanel extends JPanel {
 
     public DeadPiecePanel() {
         super(new BorderLayout());
-        setBackground(new Color(55, 27, 0));
+        setBackground(new Color(118, 150, 86));
         setBorder(PANEL_BORDER);
         this.northPanel = new JPanel(new GridLayout(8, 2));
         this.southPanel = new JPanel(new GridLayout(8, 2));

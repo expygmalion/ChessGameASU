@@ -336,7 +336,7 @@ public class Table {
             final Border highlightBorder = BorderFactory.createLineBorder(
                     ((row + col) % 2 == 0 ?
                             new Color(92, 0, 0) :
-                            new Color(44, 0, 0))
+                            new Color(1, 44, 0))
                     , 3);
 
             if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
