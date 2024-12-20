@@ -1,12 +1,5 @@
 package com.chess.gui;
 
-import com.chess.engine.user.MoveTransition;
-import com.chess.engine.board.Board;
-import com.chess.engine.board.BoardUtils;
-import com.chess.engine.board.Move;
-import com.chess.engine.board.Tile;
-import com.chess.engine.pieces.Piece;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
