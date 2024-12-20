@@ -43,7 +43,7 @@ public class Table {
         this.gameFrame.setJMenuBar(tableMenuBar);
         this.gameFrame.setSize(OuterFrameDimensions);
         this.gameFrame.setVisible(true); // Display the frame
-        this.CHESSBOARD = Board.createStandardBoard();
+        this.CHESSBOARD = Board.CreateBaseBoard();
 
         boardPanel = new BoardPanel();
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
@@ -138,7 +138,7 @@ public class Table {
 
                             // Explicitly check for NULL_MOVE
                             if (move != Move.NULL_MOVE) {
-                                final MoveTransition transition = CHESSBOARD.currentPlayer().makeMove(move);
+                                final MoveTransition transition = CHESSBOARD.activePlayer().makeMove(move);
 
                                 if (transition.getMoveStatus().isDone()) {
                                     CHESSBOARD = transition.getTransitionBoard();
@@ -224,7 +224,7 @@ public class Table {
 
 
         private Collection<Move> pieceLegalMoves(final Board board) {
-            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == board.currentPlayer().getAlliance()) {
+            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == board.activePlayer().getAlliance()) {
                 return humanMovedPiece.calculateLegalMoves(board);}
             return Collections.emptyList();
         }
@@ -238,7 +238,7 @@ public class Table {
             int row = tileID / BoardUtils.NUM_TILES_PER_ROW;
             int col = tileID % BoardUtils.NUM_TILES_PER_ROW;
 
-            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
+            if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.activePlayer().getAlliance()) {
                 for(final Move move : pieceLegalMoves(CHESSBOARD) ) {
                     if(move.getDestinationCoordinate() == this.tileID)
                         setBackground(highlightedTileColor);  // highlight the legal moves

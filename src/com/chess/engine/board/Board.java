@@ -15,8 +15,9 @@ import java.util.*;
 //TODO Omer adds the functionalities requires for the Player Interactions
 
 public class Board {
+//gameBoard to  GameArea
+    private final List<Tile> GameArea;
 
-    private final List<Tile> gameBoard;
     // Added Ahmed
     private final Collection<Piece> whitePieces;
     private final Collection<Piece> blackPieces;
@@ -25,16 +26,18 @@ public class Board {
     // Added Omer
     private final WPlayer whiteplayer;
     private final BPlayer blackplayer;
-    private final Player currentPlayer;
+    //playingPlayer
+    private final Player playingPlayer;
+
     // End Add
 
 
     private Board(Builder builder){
 
-        this.gameBoard = createGameBoard(builder);
+        this.GameArea = buildGameBoard(builder);
         // Added Ahmed
-        this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
-        this.blackPieces = calculateActivePieces(this.gameBoard,Alliance.BLACK);
+        this.whitePieces = listActivePieces(this.GameArea, Alliance.WHITE);
+        this.blackPieces = listActivePieces(this.GameArea,Alliance.BLACK);
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
         // End Add
@@ -42,7 +45,7 @@ public class Board {
         // Added Omer
         this.whiteplayer = new WPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackplayer = new BPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-        this.currentPlayer=builder.nextMoveMaker.choosePlayer(this.whiteplayer, this.blackplayer); // Rawan
+        this.playingPlayer =builder.nextMoveMaker.choosePlayer(this.whiteplayer, this.blackplayer); // Rawan
         // End Add
 
     }
@@ -53,9 +56,11 @@ public class Board {
     public Player blackPlayer(){
         return this.blackplayer;
     }
-    public Player currentPlayer(){
-        return this.currentPlayer;
+    //currentPlayer to activePlayer
+    public Player activePlayer(){
+        return this.playingPlayer;
     }
+
     public Collection<Piece> getBlackPieces() {
         return this.blackPieces;
     }
@@ -69,7 +74,7 @@ public class Board {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         for(int i = 0 ; i < BoardUtils.NUM_TILES ; i++){
-            final String tileText = this.gameBoard.get(i).toString();
+            final String tileText = this.GameArea.get(i).toString();
             builder.append(String.format("%3s", tileText));
             if((i+1)% BoardUtils.NUM_TILES_PER_ROW == 0){
                 builder.append("\n");
@@ -78,11 +83,9 @@ public class Board {
         return builder.toString();
     }// End Add
 
-    // Added Ahmed
-    private static String prettyPrint(Tile tile) {
-        return tile.toString();
-    }// End Add
-
+    //  delete Ahmed& rawan
+  // deleted prettyPrint it is not used
+//end
     // Added Taj
     private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces){
         final List<Move> legalMoves = new ArrayList<>();
@@ -93,8 +96,9 @@ public class Board {
     }// End Add
 
     // Added Ahmed
-    private Collection<Piece> calculateActivePieces(final List<Tile> gameBoard,
-                                                    final Alliance alliance) {
+        //calculateActivePieces to listActivePieces
+    private Collection<Piece> listActivePieces(final List<Tile> gameBoard,
+                                               final Alliance alliance) {
         final List<Piece> activePieces = new ArrayList<>();
 
         for (final Tile tile : gameBoard) {
@@ -111,20 +115,22 @@ public class Board {
 
     // Added Taj
     public Tile getTile(final int tileCoordinate){
-        return gameBoard.get(tileCoordinate);
+        return GameArea.get(tileCoordinate);
     }// End Add
 
     // Added Ahmed
-    private static List<Tile>createGameBoard(final Builder builder){
+        //createGameBoard to buildGameBoard
+    private static List<Tile>buildGameBoard(final Builder builder){
         final Tile[] tiles= new Tile[BoardUtils.NUM_TILES];
         for (int i=0; i<BoardUtils.NUM_TILES ; i++){
-            tiles[i]= Tile.createTile(i, builder.boardConfig.get(i));
+            tiles[i]= Tile.createTile(i, builder.PiecePlacement.get(i));
         }
         return ImmutableList.copyOf(tiles);
     } // End Add
 
     // Added Ahmed
-    public static Board createStandardBoard() {
+           //  createStandardBoard() to CreateBaseBoard()
+    public static Board CreateBaseBoard() {
         final Builder builder = new Builder();
         // black standard
         //Strong
@@ -176,17 +182,19 @@ public class Board {
     }
 
     // Added Ahmed
+
     public static class Builder{
-        Map<Integer, Piece>   boardConfig;
+            //boardConfig to   PiecePlacement
+        Map<Integer, Piece>   PiecePlacement;
         Alliance nextMoveMaker;
         Pawn enPassantPawn;
 
         public  Builder(){
-            this.boardConfig = new HashMap<>();
+            this.PiecePlacement = new HashMap<>();
         }
 
         public Builder setPiece(final Piece piece){
-            this.boardConfig.put(piece.getPiecePosition(), piece);
+            this.PiecePlacement.put(piece.getPiecePosition(), piece);
             return this;
         }
         public Builder setMoveMaker(final Alliance nextMoveMaker){

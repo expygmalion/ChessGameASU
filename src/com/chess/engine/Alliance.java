@@ -8,7 +8,7 @@ import com.chess.engine.user.WPlayer;
 public enum Alliance {
     WHITE {
         //   override
-        public  int getDirection(){
+        public  int getDirection (){
             return -1;
         }
 

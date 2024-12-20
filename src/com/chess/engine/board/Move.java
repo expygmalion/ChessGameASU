@@ -63,18 +63,18 @@ public abstract class Move {
     // Message_Taj: To improve redundancy, I pulled this upwards.
     public Board execute() {
         final Builder builder = new Builder();
-        for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+        for (final Piece piece : this.board.activePlayer().getActivePieces()) {
 
             //TODO HASHCODES
             if (!this.movedPiece.equals(piece)) {
                 builder.setPiece(piece);
             }
         }
-        for (final Piece piece : this.board.currentPlayer().getopponent().getActivePieces()) {
+        for (final Piece piece : this.board.activePlayer().getopponent().getActivePieces()) {
             builder.setPiece(piece);
         }
         builder.setPiece(this.movedPiece.movePiece(this));
-        builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance()); // Why the error?
+        builder.setMoveMaker(this.board.activePlayer().getopponent().getAlliance()); // Why the error?
         return builder.build();
     }
 
@@ -100,18 +100,18 @@ public abstract class Move {
         public Board execute() {
             final Builder builder = new Builder();
 
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            for (final Piece piece : this.board.activePlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece)) {
                     builder.setPiece(piece);
                 }
             }
-            for (final Piece piece : this.board.currentPlayer().getopponent().getActivePieces()) {
+            for (final Piece piece : this.board.activePlayer().getopponent().getActivePieces()) {
                 if(!this.attackedPiece.equals(piece)) {
                     builder.setPiece(piece);
                 }
             }
             builder.setPiece(this.movedPiece.movePiece(this));
-            builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance());
+            builder.setMoveMaker(this.board.activePlayer().getopponent().getAlliance());
             return builder.build();
         }
         @Override
@@ -180,18 +180,18 @@ public abstract class Move {
         @Override
         public Board execute() {
             final Builder builder = new Builder();
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            for (final Piece piece : this.board.activePlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece)) {
                     builder.setPiece(piece);
                 }
             }
-            for (final Piece piece : this.board.currentPlayer().getopponent().getActivePieces()) {
+            for (final Piece piece : this.board.activePlayer().getopponent().getActivePieces()) {
                 builder.setPiece(piece);
             }
             final Pawn movedPawn = (Pawn) this.movedPiece.movePiece(this);
             builder.setPiece(movedPawn);
             builder.setEnPassantPawn(movedPawn);
-            builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance());
+            builder.setMoveMaker(this.board.activePlayer().getopponent().getAlliance());
             return builder.build();
         } // End Add
     } // End Add
@@ -226,18 +226,18 @@ public abstract class Move {
         @Override
         public Board execute() {
             final Builder builder = new Builder();
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            for (final Piece piece : this.board.activePlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece) && this.castleRook.equals(piece)) {
                     builder.setPiece(piece);
                 }
             }
-            for (final Piece piece : this.board.currentPlayer().getopponent().getActivePieces()) {
+            for (final Piece piece : this.board.activePlayer().getopponent().getActivePieces()) {
                 builder.setPiece(piece);
             }
             builder.setPiece(this.movedPiece.movePiece(this));
             //todo look into first move on normal pieces
             builder.setPiece(new Rook(this.castleRookDestination, this.castleRook.getPieceAlliance()));
-            builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance());
+            builder.setMoveMaker(this.board.activePlayer().getopponent().getAlliance());
             return builder.build();
         } // End Add
     } // End Add
