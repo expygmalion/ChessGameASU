@@ -60,7 +60,7 @@ public class Bishop extends Piece {
     // Added Rawan
     @Override
     public Piece movePiece(Move move) {
-        return new Bishop( move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+        return new Bishop( move.getTargetPosition(), move.getMovedPiece().getPieceAlliance());
     } // End Add
 
     // Added Ahmed

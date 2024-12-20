@@ -60,7 +60,7 @@ public class Queen extends Piece {
     // Added Rawan
     @Override
     public Piece movePiece(Move move) {
-        return new Queen( move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+        return new Queen( move.getTargetPosition(), move.getMovedPiece().getPieceAlliance());
     }// End Add
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {

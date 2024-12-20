@@ -64,7 +64,7 @@ public class Rook extends Piece {
 
     @Override
     public Piece movePiece(Move move) {
-        return new Rook (move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+        return new Rook (move.getTargetPosition(), move.getMovedPiece().getPieceAlliance());
     }
 
     // Added Ahmed

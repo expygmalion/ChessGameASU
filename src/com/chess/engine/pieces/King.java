@@ -39,7 +39,7 @@ public class King extends Piece {
     // Added Rawan
     @Override
     public King movePiece(final Move move) {
-        return new King (move.getDestinationCoordinate(),
+        return new King (move.getTargetPosition(),
                 move.getMovedPiece().getPieceAlliance());
     } // End Add
 //    implement move method

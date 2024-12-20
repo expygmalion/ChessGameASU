@@ -56,7 +56,7 @@ public class Knight extends Piece {
     // Added Rawan
     @Override
     public Piece movePiece(Move move) {
-        return new Knight( move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+        return new Knight( move.getTargetPosition(), move.getMovedPiece().getPieceAlliance());
     } // End Add
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {

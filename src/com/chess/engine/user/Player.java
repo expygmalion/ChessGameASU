@@ -35,7 +35,7 @@ public abstract class Player {
     protected static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList();
         for(final Move move : moves) {
-            if(piecePosition == move.getDestinationCoordinate()) {
+            if(piecePosition == move.getTargetPosition()) {
                 attackMoves.add(move);
             }
         }
@@ -96,7 +96,7 @@ public abstract class Player {
         if(!IsMoveLegal(move)){
             return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
         }
-        final Board transitionBoard = move.execute();
+        final Board transitionBoard = move.updateBoard();
 
         final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionBoard.activePlayer().getopponent().getPlayerKing().getPiecePosition(),
                 transitionBoard.activePlayer().getlegalMoves());

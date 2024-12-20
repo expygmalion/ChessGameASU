@@ -30,7 +30,7 @@ public class Pawn extends Piece {
     // Added Rawan
     @Override
     public Pawn movePiece(final Move move) {
-        return new Pawn(move.getDestinationCoordinate(),
+        return new Pawn(move.getTargetPosition(),
                 move.getMovedPiece().getPieceAlliance());
     }// End Add
 // implementation method

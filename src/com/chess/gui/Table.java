@@ -130,7 +130,7 @@ public class Table {
                             // Second click: attempt to move
                             destinationTile = CHESSBOARD.getTile(tileID);
 
-                            final Move move = Move.MoveFactory.createMove(
+                            final Move move = Move.MoveHandler.createMove(
                                     CHESSBOARD,
                                     sourceTile.getTileCoordinate(),
                                     destinationTile.getTileCoordinate()
@@ -240,7 +240,7 @@ public class Table {
 
             if(humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.activePlayer().getAlliance()) {
                 for(final Move move : pieceLegalMoves(CHESSBOARD) ) {
-                    if(move.getDestinationCoordinate() == this.tileID)
+                    if(move.getTargetPosition() == this.tileID)
                         setBackground(highlightedTileColor);  // highlight the legal moves
                 }
             } else if ((row + col) % 2 == 0){

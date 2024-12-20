@@ -9,20 +9,21 @@ import static com.chess.engine.board.Board.*;
 public abstract class Move {
     final Board board;
     final Piece movedPiece;
-    final int destinationCoordinate;
+    final int TargetPosition;
     public static final Move NULL_MOVE = new NullMove();
 
-    public Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+    public Move(final Board board, final Piece movedPiece, final int TargetPosition) {
         this.board = board;
         this.movedPiece = movedPiece;
-        this.destinationCoordinate = destinationCoordinate;
+        //destinationCoordinate to TargetPosition
+        this.TargetPosition = TargetPosition;
     }
 
     @Override
     public int hashCode(){
         final int prime = 31;
         int result = 1;
-        result = prime * result + this.destinationCoordinate;
+        result = prime * result + this.TargetPosition;
         result = prime * result + this.movedPiece.hashCode();
         return result;
     }
@@ -36,12 +37,12 @@ public abstract class Move {
             return false;
         }
         final Move otherMove = (Move) other;
-        return getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+        return getTargetPosition() == otherMove.getTargetPosition()
                 && getMovedPiece() == otherMove.getMovedPiece();
     }
 
-    public int getDestinationCoordinate() {
-        return destinationCoordinate;
+    public int getTargetPosition() {
+        return TargetPosition;
     }
 
     public Piece getMovedPiece() {
@@ -61,7 +62,7 @@ public abstract class Move {
 
     //Added Rawan
     // Message_Taj: To improve redundancy, I pulled this upwards.
-    public Board execute() {
+    public Board updateBoard() {
         final Builder builder = new Builder();
         for (final Piece piece : this.board.activePlayer().getActivePieces()) {
 
@@ -97,7 +98,7 @@ public abstract class Move {
         }
         // Added Ola
         @Override
-        public Board execute() {
+        public Board updateBoard() {
             final Builder builder = new Builder();
 
             for (final Piece piece : this.board.activePlayer().getActivePieces()) {
@@ -178,7 +179,7 @@ public abstract class Move {
         }
         // Added Ola
         @Override
-        public Board execute() {
+        public Board updateBoard() {
             final Builder builder = new Builder();
             for (final Piece piece : this.board.activePlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece)) {
@@ -223,8 +224,10 @@ public abstract class Move {
             return true;
         }
         //Added Ola
+
         @Override
-        public Board execute() {
+        //execute to updateBoard
+        public Board updateBoard() {
             final Builder builder = new Builder();
             for (final Piece piece : this.board.activePlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece) && this.castleRook.equals(piece)) {
@@ -287,7 +290,7 @@ public abstract class Move {
             super(null, null, -1);
             }
         @Override
-        public Board execute() {
+        public Board updateBoard() {
             throw new RuntimeException("Cannot Instantiate, Null Move Not Made");
         } // End Rawan
     }
@@ -296,9 +299,10 @@ public abstract class Move {
 
 
     // Added Rawan
-    public static class MoveFactory {
+             //MoveFactory to MoveHandler
+    public static class MoveHandler {
 
-        private MoveFactory() {
+        private MoveHandler() {
             throw new RuntimeException("Not instantiatable!");
         }
         public static Move createMove(final Board board,
@@ -306,7 +310,7 @@ public abstract class Move {
                                       final int destinationCoordinate) {
             for (final Move move : board.getAllLegalMoves()) {
                 if (move.getCurrentCoordinate() == currentCoordinate &&
-                        move.getDestinationCoordinate() == destinationCoordinate) {
+                        move.getTargetPosition() == destinationCoordinate) {
                     return move;
                 }
             }
