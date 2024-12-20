@@ -52,9 +52,14 @@ public class Pawn extends Piece {
                 continue;
             }
             if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-//   need to Do PROMOTION
-                legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-            }
+//                Pawn Promotion:
+               if(this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)){
+             legalMoves.add(new Move.PawnPromotion(new Move.PawnMove(board,this,candidateDestinationCoordinate)));
+
+               }
+               else {
+                legalMoves.add(new Move.PawnMove(board, this, candidateDestinationCoordinate) );
+            }}
 //non-attacking move
 
             else if (currentCandidateOffset == 16 && this.isFirstMove &&
@@ -72,13 +77,32 @@ public class Pawn extends Piece {
             }
 
 //     the pawn jump
+//            todo <Mishkat>
             else if (currentCandidateOffset == 7 &&
                     !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
                             (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())))) {
                 if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+
+                        if(this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+
+                            legalMoves.add(new Move.PawnPromotion(new Move.MajorMove(board, this, candidateDestinationCoordinate)));
+
+                        }else {
+
+                            legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    }}
+                }
+                else if (board.getEnPassantPawn()!= null){
+                    if (board.getEnPassantPawn().getPiecePosition()== (this.piecePosition + (this.pieceAlliance.getOppositeDirection()))){
+                        final Piece pieceOnCandidate = board.getEnPassantPawn();
+                        if (this.pieceAlliance!= pieceOnCandidate.getPieceAlliance()){
+                            legalMoves.add(new Move.PawnEnPassantAttackMove(board, this,candidateDestinationCoordinate,pieceOnCandidate));
+//                       here if the opponent pawn in the adjacent direction (next to you)  and the same row the pawn will make the En Passant Move and move to the diagonal direction after killing the opponent pawn.
+//                            En Passant Move related to Pawn Jump Move.
+//                            here if the Off Set =7 && the pawn is black the diagonal move representing by +7 squares according to it Alliance.
+                        }
                     }
                 }
 
@@ -88,13 +112,30 @@ public class Pawn extends Piece {
                 if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                        if(this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                            legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
 
+                        } else {
+
+                            legalMoves.add(new Move.PawnPromotion(new Move.MajorMove(board, this, candidateDestinationCoordinate)));
+
+                        }
+
+
+                    }
+                }else if (board.getEnPassantPawn()!= null){
+                    if (board.getEnPassantPawn().getPiecePosition()== (this.piecePosition - (this.pieceAlliance.getOppositeDirection()))){
+                        final Piece pieceOnCandidate = board.getEnPassantPawn();
+                        if (this.pieceAlliance!= pieceOnCandidate.getPieceAlliance()){
+                            legalMoves.add(new Move.PawnEnPassantAttackMove(board, this,candidateDestinationCoordinate,pieceOnCandidate));
+//                       here if the opponent pawn in the adjacent direction (next to you)  and the same row the pawn will make the En Passant Move and move to the diagonal direction after killing the opponent pawn.
+//                            if the pawn is White the diagonal move represent -9 according to Withe Alliance.
+//                            REMEMBER THERE IS ONLY ONE EN PASSANT MOVE EVER IN THE BOARD
+                        }
                     }
                 }
             }
 //kill in diagonal
-//            promotion is missing
 
 
         }
@@ -103,4 +144,9 @@ public class Pawn extends Piece {
 
 
     }
+   public Piece getPromotionPiece(){
+        return new Queen(this.pieceAlliance,this.piecePosition,false);
+//       for simplicity the promotion always goes to Queen.
+//       set to false cause this is not the first move for Queen.
+   }
 }

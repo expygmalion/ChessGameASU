@@ -19,7 +19,11 @@ public class Queen extends Piece {
     public Queen(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.QUEEN, piecePosition, pieceAlliance, true); //Omer added a new parameter (piecetype)
     }
-
+//todo <Mishkat>
+    public Queen(Alliance pieceAlliance, int piecePosition, boolean b) {
+        super();
+    }
+//End Add
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
@@ -46,8 +50,10 @@ public class Queen extends Piece {
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if (this.pieceAlliance != pieceAlliance) {
-                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
+//                            todo <Mishkat>
+                            legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate,
                                     pieceAtDestination));
+//                            End Add
                         }
                         break;
                     }
