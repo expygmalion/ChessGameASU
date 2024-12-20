@@ -6,7 +6,6 @@ import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.chess.engine.pieces.Piece;
-import com.google.common.collect.Lists;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -28,7 +27,6 @@ import static javax.swing.SwingUtilities.isRightMouseButton; // imported from AP
 public class Table {
     private final  JFrame gameFrame;
     private final BoardPanel boardPanel;
-    private BoardDirection boardDirection;
 
     private final static Dimension OuterFrameDimensions = new Dimension(600,600);
     private final static Dimension BoardPanelDimensions = new Dimension(400, 350);
@@ -48,52 +46,14 @@ public class Table {
         this.gameFrame.setSize(OuterFrameDimensions);
         this.gameFrame.setVisible(true); // Display the frame
         this.CHESSBOARD = Board.createStandardBoard();
-        this.boardDirection = BoardDirection.NORMAL;
+
         boardPanel = new BoardPanel();
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
     }
     private JMenuBar createTableMenuBar() {
         final JMenuBar tableMenuBar = new JMenuBar();
         tableMenuBar.add(createFileMenu());
-        tableMenuBar.add(createPreferencesMenu());
         return tableMenuBar;
-
-    }
-
-    private JMenu createPreferencesMenu(){
-        final JMenu preferencesMenu = new JMenu("Preferences");
-        final JMenuItem flipBoardMenu = new JMenuItem("Flip Board");
-        flipBoardMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boardDirection = boardDirection.opposite();
-                boardPanel.drawBoard(CHESSBOARD);
-            }
-        });
-        preferencesMenu.add(flipBoardMenu);
-        return preferencesMenu;
-    }
-
-    public enum BoardDirection {
-        NORMAL{
-            @Override
-            List<TilePanel> traverse(final List<TilePanel> boardTiles){return boardTiles;}
-            @Override
-            BoardDirection opposite(){
-                return FLIPPED;
-            }
-        },
-        FLIPPED{
-            @Override
-            List<TilePanel> traverse(final List<TilePanel> boardTiles){return Lists.reverse(boardTiles);}
-            @Override
-            BoardDirection opposite(){
-                return NORMAL;
-            }
-        };
-        abstract List<TilePanel> traverse(List<TilePanel> boardTiles);
-        abstract BoardDirection opposite();
-
 
     }
 
@@ -135,7 +95,7 @@ public class Table {
         }
         public void drawBoard(final Board board) {
             removeAll();
-            for(final TilePanel tilePanel : boardDirection.traverse(boardTiles)) { // boardtiles is norm
+            for(final TilePanel tilePanel : boardTiles) {
                 tilePanel.drawTile(board);
                 add(tilePanel);
             }
@@ -158,12 +118,8 @@ public class Table {
                 public void mouseClicked(final MouseEvent e) {
                     if (isRightMouseButton(e)) {
                         // Right-click resets selection
-                        System.out.print("Cancelling... Selection");
                         sourceTile = null;
-                        destinationTile = null;
                         humanMovedPiece = null;
-                        SwingUtilities.invokeLater(() -> boardPanel.drawBoard(CHESSBOARD)); // removing highlight
-
                     } else if (isLeftMouseButton(e)){
                         if (sourceTile == null) {
                             // First click: select the piece
@@ -175,6 +131,7 @@ public class Table {
                         } else {
                             // Second click: attempt to move
                             destinationTile = CHESSBOARD.getTile(tileID);
+
                             final Move move = Move.MoveFactory.createMove(
                                     CHESSBOARD,
                                     sourceTile.getTileCoordinate(),
@@ -206,7 +163,6 @@ public class Table {
 
                         SwingUtilities.invokeLater(() -> boardPanel.drawBoard(CHESSBOARD));
                     }
-
                 }
 
                 @Override
