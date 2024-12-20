@@ -1,6 +1,6 @@
 package com.chess.engine;
 
-
+import com.chess.engine.board.BoardUtils;
 import com.chess.engine.user.BPlayer;
 import com.chess.engine.user.Player;
 import com.chess.engine.user.WPlayer;
@@ -11,6 +11,16 @@ public enum Alliance {
         public  int getDirection(){
             return -1;
         }
+
+        // Added Mishkat
+        @Override
+        public int getOppositeDirection() {return 1; }
+
+        @Override
+        public boolean isPawnPromotionSquare(int position) {
+         return BoardUtils.EIGHT_RANK[position];
+        }
+        // End Add
 
         @Override
         public boolean isWhite() {
@@ -51,6 +61,16 @@ public enum Alliance {
                                    final BPlayer blackplayer) {
             return blackplayer;
         } // End Add
+
+        // Added Mishkat
+        @Override
+        public int getOppositeDirection() {return -1; }
+
+        @Override
+        public boolean isPawnPromotionSquare(int position) {
+            return BoardUtils.FIRST_RANK[position];
+        }
+        // End Add
     };
 
 
@@ -61,6 +81,8 @@ public enum Alliance {
 
     public abstract boolean isWhite();
     public abstract boolean isBlack();
+    public abstract int getOppositeDirection();
+    public abstract boolean isPawnPromotionSquare(int position);
 
     public abstract Player choosePlayer(final WPlayer whiteplayer,
                                         final BPlayer blackplayer);
@@ -78,6 +100,4 @@ public enum Alliance {
             return null;
         }
     }
-
-
 }

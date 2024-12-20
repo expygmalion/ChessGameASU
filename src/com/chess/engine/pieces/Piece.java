@@ -11,13 +11,20 @@ import java.util.Collection;
 //TODO In each subsequent stage of production, this class will be mutated
 
 public abstract class Piece {
-    protected final int piecePosition;
-    protected final Alliance pieceAlliance;
-    protected final boolean isFirstMove; //Ahmed Added
-    protected final PieceType pieceType;     // Added Omer
-    private final int cachedHashcode;
+    protected  int piecePosition;
+    protected  Alliance pieceAlliance;
+    protected  boolean isFirstMove; //Ahmed Added
+    protected  PieceType pieceType;     // Added Omer
+    private int cachedHashcode;
 
+public Piece() {
+    this.piecePosition = piecePosition;
+    this.pieceAlliance = pieceAlliance;
+    this.isFirstMove = isFirstMove;
+    this.pieceType = pieceType;
+    this.cachedHashcode = cachedHashcode;
 
+}
 
     public PieceType getPieceType() {
         return this.pieceType;

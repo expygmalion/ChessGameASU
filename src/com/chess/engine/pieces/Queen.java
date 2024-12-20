@@ -22,6 +22,9 @@ public class Queen extends Piece {
     public Queen(int piecePosition, Alliance pieceAlliance, final boolean isFirstMove) {
         super(PieceType.QUEEN, piecePosition, pieceAlliance, isFirstMove);
     }
+    public Queen(Alliance pieceAlliance, int piecePosition , boolean isFirstMove) {
+        super();
+    }
 
 
     @Override
@@ -50,7 +53,7 @@ public class Queen extends Piece {
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if (this.pieceAlliance != pieceAlliance) {
-                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
+                            legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate,
                                     pieceAtDestination));
                         }
                         break;

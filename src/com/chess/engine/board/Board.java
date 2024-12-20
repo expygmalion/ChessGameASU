@@ -21,6 +21,8 @@ private final Map<Integer, Piece> boardConfig;
     private final Collection<Piece> whitePieces;
     private final Collection<Piece> blackPieces;
     // End Add
+    private final Pawn enPassantPawn; // Adeed Mishkat
+
 
     // Added Omer
     private final WPlayer whiteplayer;
@@ -32,6 +34,7 @@ private final Map<Integer, Piece> boardConfig;
     private Board(Builder builder){
 
         this.gameBoard = createGameBoard(builder);
+        this.enPassantPawn = builder.enPassantPawn;
         this.boardConfig = Collections.unmodifiableMap(builder.boardConfig);
         // Added Ahmed
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
@@ -39,6 +42,8 @@ private final Map<Integer, Piece> boardConfig;
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
         // End Add
+
+
 
         // Added Omer
         this.whiteplayer = new WPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
@@ -57,11 +62,18 @@ private final Map<Integer, Piece> boardConfig;
     public Player currentPlayer(){
         return this.currentPlayer;
     }
+    //End add
     public Collection<Piece> getBlackPieces() {
         return this.blackPieces;
     }
     public Collection<Piece> getWhitePieces() {
         return this.whitePieces;
+    }
+    // End Add
+
+    // Added Mishkat
+    public Pawn getEnPassantPawn(){
+        return this.enPassantPawn;
     } // End Add
 
 
