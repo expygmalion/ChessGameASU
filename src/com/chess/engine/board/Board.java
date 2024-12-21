@@ -15,7 +15,7 @@ import java.util.*;
 //TODO Omer adds the functionalities requires for the Player Interactions
 
 public class Board {
-//gameBoard to  GameArea
+//XYZ gameBoard to  GameArea
     private final List<Tile> GameArea;
 
     // Added Ahmed
@@ -56,7 +56,7 @@ public class Board {
     public Player blackPlayer(){
         return this.blackplayer;
     }
-    //currentPlayer to activePlayer
+    //XYZ currentPlayer to activePlayer
     public Player activePlayer(){
         return this.playingPlayer;
     }
@@ -96,13 +96,13 @@ public class Board {
     }// End Add
 
     // Added Ahmed
-        //calculateActivePieces to listActivePieces
+        //XYZ calculateActivePieces to listActivePieces
     private Collection<Piece> listActivePieces(final List<Tile> gameBoard,
                                                final Alliance alliance) {
         final List<Piece> activePieces = new ArrayList<>();
 
         for (final Tile tile : gameBoard) {
-            if (tile.isTileOccupied()) {
+            if (tile.isTileFilled()) {
                 final Piece piece = tile.getPiece();
                 if (piece.getPieceAlliance() == alliance) {
                     activePieces.add(piece);
@@ -119,7 +119,7 @@ public class Board {
     }// End Add
 
     // Added Ahmed
-        //createGameBoard to buildGameBoard
+        //XYZ createGameBoard to buildGameBoard
     private static List<Tile>buildGameBoard(final Builder builder){
         final Tile[] tiles= new Tile[BoardUtils.NUM_TILES];
         for (int i=0; i<BoardUtils.NUM_TILES ; i++){
@@ -129,7 +129,7 @@ public class Board {
     } // End Add
 
     // Added Ahmed
-           //  createStandardBoard() to CreateBaseBoard()
+           //  XYZ createStandardBoard() to CreateBaseBoard()
     public static Board CreateBaseBoard() {
         final Builder builder = new Builder();
         // black standard
@@ -184,7 +184,7 @@ public class Board {
     // Added Ahmed
 
     public static class Builder{
-            //boardConfig to   PiecePlacement
+            //XYZ boardConfig to   PiecePlacement
         Map<Integer, Piece>   PiecePlacement;
         Alliance nextMoveMaker;
         Pawn enPassantPawn;

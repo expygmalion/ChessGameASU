@@ -13,7 +13,8 @@ public abstract class Tile {
     public int getTileCoordinate() {
         return tileCoordinate;
     }
-    private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
+         //EMPTY_TILES_CACHE to AllEmptyTiles
+    private static final Map<Integer, EmptyTile> AllEmptyTiles = createAllPossibleEmptyTiles();
 
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
@@ -29,7 +30,7 @@ public abstract class Tile {
 
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
 
-        return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
+        return piece != null ? new FilledTile(tileCoordinate, piece) : AllEmptyTiles.get(tileCoordinate);
     }
 
 
@@ -37,8 +38,8 @@ public abstract class Tile {
     private Tile(final int tileCoordinate) {
         this.tileCoordinate = tileCoordinate;
     }
-
-    public abstract boolean isTileOccupied();
+        //isTileOccupied()
+    public abstract boolean isTileFilled();
     public abstract Piece getPiece();
 
     public static final class EmptyTile extends Tile {
@@ -51,7 +52,8 @@ public abstract class Tile {
             return "-";
         }
         @Override
-        public boolean isTileOccupied() {
+
+        public boolean isTileFilled() {
             return false;
         }
 
@@ -60,17 +62,17 @@ public abstract class Tile {
             return null;
         }
     }
-
-    public static final class OccupiedTile extends Tile {
+          //OccupiedTile  to  FilledTile
+    public static final class FilledTile extends Tile {
         private final Piece pieceOnTile;
 
-        OccupiedTile(int tileCoordinate, final Piece pieceOnTile) {
+        FilledTile(int tileCoordinate, final Piece pieceOnTile) {
             super(tileCoordinate);
             this.pieceOnTile = pieceOnTile;
         }
 
         @Override
-        public boolean isTileOccupied() {
+        public boolean isTileFilled() {
             return true;
         }
         @Override

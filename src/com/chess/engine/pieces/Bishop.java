@@ -12,8 +12,8 @@ import java.util.List;
 //TODO Taj Creates the Class and provides structure and functionality
 
 public class Bishop extends Piece {
-
-    private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
+          //XYZ CANDIDATE_MOVE_VECTOR_COORDINATES to MOVE_OFFSETS
+    private static final int[] BISHOP_MOVE_OFFSETS = { -9, -7, 7, 9};
 
     public Bishop(int piecePosition, Alliance pieceAlliance) {
         super(PieceType.BISHOP, piecePosition, pieceAlliance); // Omer added a new parameter (piecetype)
@@ -24,7 +24,7 @@ public class Bishop extends Piece {
     public Collection<Move> calculateLegalMoves(Board board) {
 
         final List<Move> legalMoves = new ArrayList<>();
-        for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
+        for (final int candidateCoordinateOffset : BISHOP_MOVE_OFFSETS) {
             int candidateDestinationCoordinate = this.piecePosition;
             while (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 
@@ -39,7 +39,7 @@ public class Bishop extends Piece {
                 if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-                    if(!candidateDestinationTile.isTileOccupied()){
+                    if(!candidateDestinationTile.isTileFilled()){
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
 
                     } else {

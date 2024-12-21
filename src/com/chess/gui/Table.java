@@ -195,7 +195,7 @@ public class Table {
         }
         private void assignTilePieceIcon(final Board board){
             this.removeAll();
-            if(board.getTile(this.tileID).isTileOccupied()){
+            if(board.getTile(this.tileID).isTileFilled()){
                 try {
                     final BufferedImage image = ImageIO.read(new File(ICONPATH
                     + board.getTile(this.tileID).getPiece().getPieceAlliance().toString().substring(0,1)

@@ -17,8 +17,8 @@ import java.util.Collection;
 // Subsequent Additions are prevalent for advanced functionalities
 
 public class King extends Piece {
-
-    private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
+    //XYZ CANDIDATE_MOVE_COORDINATE  to KING_MOVE_OFFSETS
+    private final static int[] KING_MOVE_OFFSETS = {-9, -8, -7, -1, 1, 7, 8, 9};
 //    represent the diagonal moves from its position
 //    •	Diagonal moves: -9, -7, 7, 9.
 //	•	Horizontal moves: -1, 1.
@@ -49,7 +49,7 @@ public class King extends Piece {
 
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int currentCadidateOffset : CANDIDATE_MOVE_COORDINATE) {
+        for (final int currentCadidateOffset : KING_MOVE_OFFSETS) {
             final int candidateDestinationCoordinate = this.piecePosition + currentCadidateOffset;
 
             if (isFirstColumnExclusion(this.piecePosition,currentCadidateOffset)||
@@ -63,7 +63,7 @@ public class King extends Piece {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 //                ensures the destination coordinate lies within the valid board range (0–63 for a chessboard).
 
-                if (!candidateDestinationTile.isTileOccupied()) {
+                if (!candidateDestinationTile.isTileFilled()) {
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
 
                 } else {

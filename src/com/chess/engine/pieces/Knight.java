@@ -15,8 +15,8 @@ import java.util.List;
 //TODO Taj Creates the Class and provides structure and functionality
 
 public class Knight extends Piece {
-
-    private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
+      //XYZ CANDIDATE_MOVE_COORDINATES to KNIGHT_MOVE_OFFSETS
+    private final static int[] KNIGHT_MOVE_OFFSETS = {-17, -15, -10, -6, 6, 10, 15, 17};
     public Knight(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.KNIGHT, piecePosition, pieceAlliance); //Omer added a new parameter (piecetype)
 
@@ -26,11 +26,14 @@ public class Knight extends Piece {
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
 
-        final List<Move> legalMoves = new ArrayList<>();
-        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
 
-            final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
-            if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)){
+        final List<Move> legalMoves = new ArrayList<>();
+
+        for (final int currentCandidateOffset : KNIGHT_MOVE_OFFSETS) {
+           //XYZ moveDestination TO  moveDestination
+
+            final int moveDestination = this.piecePosition + currentCandidateOffset;
+            if (BoardUtils.isValidTileCoordinate(moveDestination)){
                 if (  isFirstColumnExclusion  (this.piecePosition, currentCandidateOffset)
                         || isSecondColumnExclusion  (this.piecePosition, currentCandidateOffset)
                         || isSeventhColumnExclusion (this.piecePosition, currentCandidateOffset)
@@ -38,15 +41,15 @@ public class Knight extends Piece {
                     continue;
                 }
 
-                final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-                if(!candidateDestinationTile.isTileOccupied()){
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                final Tile candidateDestinationTile = board.getTile(moveDestination);
+                if(!candidateDestinationTile.isTileFilled()){
+                    legalMoves.add(new Move.MajorMove(board, this, moveDestination));
 
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                     if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        legalMoves.add(new Move.AttackMove(board, this, moveDestination, pieceAtDestination));
                     }
                 }
             }

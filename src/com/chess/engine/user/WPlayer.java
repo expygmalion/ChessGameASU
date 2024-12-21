@@ -49,11 +49,11 @@ public class WPlayer extends Player{
 
         if (this.playerKing.isFirstMove() && !this.isInCheck()) {
             // White's King-side Castle
-            if (!this.board.getTile(61).isTileOccupied() &&
-                    !this.board.getTile(62).isTileOccupied()) {
+            if (!this.board.getTile(61).isTileFilled() &&
+                    !this.board.getTile(62).isTileFilled()) {
 
                 final Tile rookTile = this.board.getTile(63);
-                if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove()) {
+                if (rookTile.isTileFilled() && rookTile.getPiece().isFirstMove()) {
                     if (Player.calculateAttacksOnTile(61, opponentsLegals).isEmpty() &&
                             Player.calculateAttacksOnTile(62, opponentsLegals).isEmpty() &&
                             rookTile.getPiece().getPieceType().isRook()) {
@@ -71,12 +71,12 @@ public class WPlayer extends Player{
             }
 
             // White's Queen-side Castle
-            if (!this.board.getTile(59).isTileOccupied() &&
-                    !this.board.getTile(58).isTileOccupied() &&
-                    !this.board.getTile(57).isTileOccupied()) {
+            if (!this.board.getTile(59).isTileFilled() &&
+                    !this.board.getTile(58).isTileFilled() &&
+                    !this.board.getTile(57).isTileFilled()) {
 
                 final Tile rookTile = this.board.getTile(56);
-                if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() &&
+                if (rookTile.isTileFilled() && rookTile.getPiece().isFirstMove() &&
                         Player.calculateAttacksOnTile(58, opponentsLegals).isEmpty() &&
                         Player.calculateAttacksOnTile(59, opponentsLegals).isEmpty() &&
                         rookTile.getPiece().getPieceType().isRook()

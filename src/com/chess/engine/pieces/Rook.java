@@ -12,7 +12,7 @@ import java.util.List;
 
 //TODO Khalid Creates the Class and provides structure and functionality
 public class Rook extends Piece {
-
+       //XYZ CANDIDATE_MOVE_VECTOR_COORDINATES TO KING_MOVE_OFFSETS
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
     public Rook(int piecePosition, Alliance pieceAlliance) {
@@ -41,7 +41,7 @@ public class Rook extends Piece {
                 if (candidateDestinationCoordinate >= 0 && candidateDestinationCoordinate < 64) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
-                    if (!candidateDestinationTile.isTileOccupied()) {
+                    if (!candidateDestinationTile.isTileFilled()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                     } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();

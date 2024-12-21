@@ -13,8 +13,8 @@ import java.util.List;
 
 //TODO Khalid Creates the Class and provides structure and functionality
 public class Queen extends Piece {
-
-    private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
+          //XYZ  CANDIDATE_MOVE_VECTOR_COORDINATES  TO QUEEN_MOVE_OFFSETS
+    private static final int[] QUEEN_MOVE_OFFSETS = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public Queen(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.QUEEN, piecePosition, pieceAlliance); //Omer added a new parameter (piecetype)
@@ -24,7 +24,7 @@ public class Queen extends Piece {
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
+        for (final int candidateCoordinateOffset : QUEEN_MOVE_OFFSETS) {
             int candidateDestinationCoordinate = this.piecePosition;
 
             while (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
@@ -39,7 +39,7 @@ public class Queen extends Piece {
 
                 if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-                    if (!candidateDestinationTile.isTileOccupied()) {
+                    if (!candidateDestinationTile.isTileFilled()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                     } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();

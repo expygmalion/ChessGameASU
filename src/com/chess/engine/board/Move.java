@@ -15,7 +15,7 @@ public abstract class Move {
     public Move(final Board board, final Piece movedPiece, final int TargetPosition) {
         this.board = board;
         this.movedPiece = movedPiece;
-        //destinationCoordinate to TargetPosition
+        //XYZ DestinationCoordinate to TargetPosition
         this.TargetPosition = TargetPosition;
     }
 
@@ -226,7 +226,7 @@ public abstract class Move {
         //Added Ola
 
         @Override
-        //execute to updateBoard
+        //XYZ execute to updateBoard
         public Board updateBoard() {
             final Builder builder = new Builder();
             for (final Piece piece : this.board.activePlayer().getActivePieces()) {
@@ -299,7 +299,7 @@ public abstract class Move {
 
 
     // Added Rawan
-             //MoveFactory to MoveHandler
+             //XYZ MoveFactory to MoveHandler
     public static class MoveHandler {
 
         private MoveHandler() {

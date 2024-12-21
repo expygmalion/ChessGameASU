@@ -11,8 +11,8 @@ import java.util.List;
 
 //TODO MISHKAT Creates the Class and provides structure and functionality
 public class Pawn extends Piece {
-
-    private final static int[] CANDIDATE_MOVE_COORDINATE = {8, 16, 9, 7};
+      // CANDIDATE_MOVE_COORDINATE TO PAWN_MOVE_OFFSETS
+    private final static int[]  PAWN_MOVE_OFFSETS = {8, 16, 9, 7};
 
     public Pawn(int piecePosition, Alliance pieceAlliance) {
         super(PieceType.PAWN, piecePosition, pieceAlliance); // Omer added a new parameter (piecetype)
@@ -39,7 +39,7 @@ public class Pawn extends Piece {
 //        the move has a class in the previous code
         final List<Move> legalMoves = new ArrayList();
 // I added this now!
-        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
+        for (final int currentCandidateOffset :  PAWN_MOVE_OFFSETS) {
 
             final int candidateDestinationCoordinate = this.piecePosition + (this.pieceAlliance.getPieceAlliance().getDirection() * currentCandidateOffset);
 //             would apply 8 for black and -8 for white
@@ -51,7 +51,7 @@ public class Pawn extends Piece {
             if (!BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                 continue;
             }
-            if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+            if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileFilled()) {
 //   need to Do PROMOTION
                 legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
             }
@@ -65,8 +65,8 @@ public class Pawn extends Piece {
                 final int behindCandidateDestinationCoordinate = this.piecePosition + (this.pieceAlliance.getDirection() * 8);
 
 
-                if (!board.getTile(behindCandidateDestinationCoordinate).isTileOccupied() &&
-                        !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                if (!board.getTile(behindCandidateDestinationCoordinate).isTileFilled() &&
+                        !board.getTile(candidateDestinationCoordinate).isTileFilled()) {
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 }
             }
@@ -75,7 +75,7 @@ public class Pawn extends Piece {
             else if (currentCandidateOffset == 7 &&
                     !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
                             (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())))) {
-                if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                if (board.getTile(candidateDestinationCoordinate).isTileFilled()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
@@ -85,7 +85,7 @@ public class Pawn extends Piece {
             } else if (currentCandidateOffset == 9 &&
                     !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
                             (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())))) {
-                if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                if (board.getTile(candidateDestinationCoordinate).isTileFilled()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
