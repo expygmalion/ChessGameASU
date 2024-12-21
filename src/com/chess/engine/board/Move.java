@@ -1,6 +1,7 @@
 package com.chess.engine.board;
 import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;
+import com.chess.engine.pieces.Queen;
 import com.chess.engine.pieces.Rook;
 
 import static com.chess.engine.board.Board.*;
@@ -215,8 +216,11 @@ public abstract int hashcode(); // todo Added Mishkat
         }
 
         @Override
-        public String toString(){
-            return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+        public String toString() {
+            if (movedPiece.getPieceType() == Piece.PieceType.PAWN) {
+                return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+            }
+            return super.toString();
         }
         // End add
 
@@ -234,7 +238,7 @@ public abstract int hashcode(); // todo Added Mishkat
         }
         @Override
         public String toString (){
-            return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).substring(0,1) + " x" + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+            return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).substring(0,1) + "x" + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
 //        the function above shows that when the pawn kill a piece it recorde the kill in the file following by X indicate that it has been removed.
     } // End Add
@@ -333,8 +337,9 @@ public abstract int hashcode(); // todo Added Mishkat
             return this.decoratedMove.getAttackedPiece();
         }
 
-        public String toString(){
-            return " ";
+        public String toString() {
+            return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()) + "-" +
+                    BoardUtils.getPositionAtCoordinate(this.destinationCoordinate) + "=Q" ;
         }
 
     }
@@ -351,7 +356,10 @@ public abstract int hashcode(); // todo Added Mishkat
         public int hashcode() {
             return 0;
         }
-
+        @Override
+        public String toString() {
+            return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+        }
         // Added Ola
         @Override
         public Board execute() {
@@ -369,6 +377,7 @@ public abstract int hashcode(); // todo Added Mishkat
             builder.setEnPassantPawn(movedPawn);
             builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance());
             return builder.build();
+
         } // End Add
 
         @Override
@@ -600,7 +609,7 @@ public abstract int hashcode(); // todo Added Mishkat
         }
         @Override
         public String toString (){
-            return movedPiece.getPieceType() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+            return movedPiece.getPieceType() +"x"+ BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
         }
     }
     // Added Rawan

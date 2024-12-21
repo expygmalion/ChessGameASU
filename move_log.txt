@@ -1,0 +1,13 @@
+e4
+d5
+exd5
+Nf6
+Qf3
+Qxd5
+Qxd5
+Nd7
+Qxf7
+Kd8
+Qxf8
+Rxf8
+Bc4

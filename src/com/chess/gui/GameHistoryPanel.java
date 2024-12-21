@@ -32,36 +32,41 @@ class GameHistoryPanel extends JPanel {
         this.setVisible(true);
     }
 
-    void redo(final Board board,
-              final MoveLog moveHistory) {
+    void redo(final Board board, final MoveLog moveHistory) {
         int currentRow = 0;
         this.model.clear();
-        for (final Move move : moveHistory.getMoves()) {
+        StringBuilder whiteMoveBuilder = new StringBuilder();
+        StringBuilder blackMoveBuilder = new StringBuilder();
+
+        // Iterate over moves to display them in traditional notation format
+        for (int i = 0; i < moveHistory.size(); i++) {
+            final Move move = moveHistory.getMoves().get(i);
             final String moveText = move.toString();
+
             if (move.getMovedPiece().getPieceAlliance().isWhite()) {
-                this.model.setValueAt(moveText, currentRow, 0);
+                whiteMoveBuilder.append(moveText).append(" ");
+            } else {
+                blackMoveBuilder.append(moveText).append(" ");
             }
-            else if (move.getMovedPiece().getPieceAlliance().isBlack()) {
-                this.model.setValueAt(moveText, currentRow, 1);
-                currentRow++;
-            }
-        }
 
-        if(moveHistory.getMoves().size() > 0) {
-            final Move lastMove = moveHistory.getMoves().get(moveHistory.size() - 1);
-            final String moveText = lastMove.toString();
+            // After White's and Black's move, add the move to the model
+            if (move.getMovedPiece().getPieceAlliance().isBlack() || i == moveHistory.size() - 1) {
+                if (whiteMoveBuilder.length() > 0) {
+                    this.model.setValueAt(currentRow + 1 + ". " + whiteMoveBuilder.toString(), currentRow, 0);
+                }
+                if (blackMoveBuilder.length() > 0) {
+                    this.model.setValueAt(currentRow + 1 + ". " + blackMoveBuilder.toString(), currentRow, 1);
+                    currentRow++;
+                }
 
-            if (lastMove.getMovedPiece().getPieceAlliance().isWhite()) {
-                this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow, 0);
-            }
-            else if (lastMove.getMovedPiece().getPieceAlliance().isBlack()) {
-                this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow - 1, 1);
+                // Reset move builders for next turn
+                whiteMoveBuilder.setLength(0);
+                blackMoveBuilder.setLength(0);
             }
         }
 
         final JScrollBar vertical = scrollPane.getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
-
     }
 
     private static String calculateCheckAndCheckMateHash(final Board board) {

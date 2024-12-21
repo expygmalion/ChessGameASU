@@ -1,5 +1,8 @@
 package com.chess.gui;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import com.chess.engine.user.MoveTransition;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
@@ -8,13 +11,13 @@ import com.chess.engine.board.Tile;
 import com.chess.engine.pieces.Piece;
 import com.google.common.collect.Lists;
 
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,11 +32,12 @@ public class Table {
     private final  JFrame gameFrame;
     private final BoardPanel boardPanel;
     private BoardDirection boardDirection;
-
+    private final MoveLog moveLog;
     private final static Dimension OuterFrameDimensions = new Dimension(800,600);
     private final static Dimension BoardPanelDimensions = new Dimension(400, 350);
     private final static Dimension TilePanelDimensions = new Dimension(10, 10);
     private Board CHESSBOARD; // should not be final
+    private Board FileBoard;
     private static String ICONPATH = "ArtWork/Icons/";
     private Tile sourceTile;
     private Tile destinationTile;
@@ -66,6 +70,8 @@ public class Table {
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.add(this.deadPiecePanel, BorderLayout.WEST);
         this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
+        this.moveLog = new MoveLog();
+        this.FileBoard = Board.CreateFileBoard();
     }
     private JMenuBar createTableMenuBar() {
         final JMenuBar tableMenuBar = new JMenuBar();
@@ -73,6 +79,28 @@ public class Table {
         tableMenuBar.add(createPreferencesMenu());
         return tableMenuBar;
 
+    }
+    private void saveBoardStateToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("board_state.txt", false))) { // Set append to false
+            // Convert the current board state to a string representation
+            StringBuilder boardState = new StringBuilder();
+            for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
+                Tile tile = CHESSBOARD.getTile(i);
+                if (tile.isTileOccupied()) {
+                    Piece piece = tile.getPiece();
+                    boardState.append(piece.getPieceType().toString())
+                            .append(piece.getPieceAlliance().toString().substring(0, 1)) // Alliance abbreviation (W/B)
+                            .append(i) // Tile coordinate
+                            .append(" ");
+                } else {
+                    boardState.append("empty ").append(i).append(" "); // Indicate empty tile
+                }
+            }
+            boardState.append("\n"); // Add a newline after each board state
+            writer.write(boardState.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private JMenu createPreferencesMenu(){
@@ -144,8 +172,8 @@ public class Table {
                 add(tilePanel);
             }
             setPreferredSize(BoardPanelDimensions);
-            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            setBackground(Color.BLACK);
+            setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7));
+            setBackground(new Color(97, 68, 34));
             validate();
         }
         public void drawBoard(final Board board) {
@@ -213,13 +241,15 @@ public class Table {
                         humanMovedPiece = null;
                         SwingUtilities.invokeLater(() -> boardPanel.drawBoard(CHESSBOARD)); // removing highlight
 
-                    } else if (isLeftMouseButton(e)){
+                    } else if (isLeftMouseButton(e)) {
                         if (sourceTile == null) {
                             // First click: select the piece
                             sourceTile = CHESSBOARD.getTile(tileID);
                             humanMovedPiece = sourceTile.getPiece();
-                            if (humanMovedPiece == null) {
-                                sourceTile = null;
+
+                            // Ensure the selected piece belongs to the current player
+                            if (humanMovedPiece == null || humanMovedPiece.getPieceAlliance() != CHESSBOARD.currentPlayer().getAlliance()) {
+                                sourceTile = null; // Deselect if the piece doesn't belong to the current player
                             }
                         } else {
                             // Second click: attempt to move
@@ -236,10 +266,13 @@ public class Table {
 
                                 if (transition.getMoveStatus().isDone()) {
                                     CHESSBOARD = transition.getTransitionBoard();
-                                    System.out.println("Move successful: " + move);
+                                    moveLog.addMove(move);
+                                    System.out.println("Move successful: " + move + "State Saved");
+                                    saveBoardStateToFile();
+
+
                                 } else {
-                                    System.out.println("Invalid move: " + move);
-                                    System.out.println("Move status: " + transition.getMoveStatus());
+                                    System.out.println("Invalid move: " + transition.getMoveStatus().statusPrint());
                                 }
                             } else {
                                 System.out.println("No legal move found between " +
@@ -253,9 +286,13 @@ public class Table {
                             humanMovedPiece = null;
                         }
 
-                        SwingUtilities.invokeLater(() -> boardPanel.drawBoard(CHESSBOARD));
-                    }
+                        SwingUtilities.invokeLater(() -> {
+                            gameHistoryPanel.redo(CHESSBOARD, moveLog);
+                            deadPiecePanel.redo(moveLog);
+                            boardPanel.drawBoard(CHESSBOARD);
 
+                        });
+                    }
                 }
 
                 @Override
@@ -294,6 +331,7 @@ public class Table {
                     final BufferedImage image = ImageIO.read(new File(ICONPATH
                             + board.getTile(this.tileID).getPiece().getPieceAlliance().toString().substring(0,1)
                             + board.getTile(this.tileID).getPiece().toString()+ ".png"));
+
                     add(new JLabel(new ImageIcon(image)));
                 } catch (IOException e) {
                     throw new RuntimeException(e); //or e.printStackTrace()
@@ -327,17 +365,27 @@ public class Table {
 
         // Not preferred perhaps
         private void assignTileColor() {
-            final Color lightTileColor = new Color(238, 238, 210);
-            final Color darkTileColor = new Color(118, 150, 86);
+            final Color lightTileColor = new Color(235, 236, 208);
+            final Color darkTileColor = new Color(115, 149, 82);
+            final Color checkTileColor = new Color(255, 10, 100); // Red color for the tile in check
 
-
-            int row = tileID / BoardUtils.NUM_TILES_PER_ROW;
-            int col = tileID % BoardUtils.NUM_TILES_PER_ROW;
+            int row = tileID / BoardUtils.NUM_TILES_PER_ROW;  // ODD
+            int col = tileID % BoardUtils.NUM_TILES_PER_ROW; // EVEN
             final Border highlightBorder = BorderFactory.createLineBorder(
                     ((row + col) % 2 == 0 ?
                             new Color(92, 0, 0) :
                             new Color(1, 44, 0))
                     , 3);
+
+            // Highlight the king's tile if in check
+            if (CHESSBOARD.currentPlayer().isInCheck()) {
+                final Piece kingPiece = CHESSBOARD.currentPlayer().getPlayerKing();
+                if (kingPiece != null && kingPiece.getPiecePosition() == this.tileID) {
+                    setBackground(checkTileColor);
+                    setBorder(null); // Optional: No border when in check
+                    return;
+                }
+            }
 
             if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == CHESSBOARD.currentPlayer().getAlliance()) {
                 for (final Move move : pieceLegalMoves(CHESSBOARD)) {

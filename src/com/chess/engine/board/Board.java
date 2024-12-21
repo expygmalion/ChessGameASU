@@ -28,8 +28,16 @@ private final Map<Integer, Piece> boardConfig;
     private final WPlayer whiteplayer;
     private final BPlayer blackplayer;
     private final Player currentPlayer;
-    // End Add
 
+    public static Board CreateFileBoard() {
+
+       return null;
+    }
+
+    // End Add
+    public Player getCurrentPlayer(){
+        return this.currentPlayer;
+    }
 
     private Board(Builder builder){
 
