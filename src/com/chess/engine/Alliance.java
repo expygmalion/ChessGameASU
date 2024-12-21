@@ -5,7 +5,13 @@ import com.chess.engine.user.BPlayer;
 import com.chess.engine.user.Player;
 import com.chess.engine.user.WPlayer;
 
+/**
+ * The enum Alliance.
+ */
 public enum Alliance {
+    /**
+     * The White.
+     */
     WHITE {
         //   override
         public  int getDirection(){
@@ -39,6 +45,9 @@ public enum Alliance {
         }  // End Add
 
     },
+    /**
+     * The Black.
+     */
     BLACK {
         public int getDirection() {
             return 1;
@@ -74,19 +83,57 @@ public enum Alliance {
     };
 
 
-
-
-
+    /**
+     * Gets direction.
+     *
+     * @return the direction
+     */
     public abstract int getDirection();
 
+    /**
+     * Is white boolean.
+     *
+     * @return the boolean
+     */
     public abstract boolean isWhite();
+
+    /**
+     * Is black boolean.
+     *
+     * @return the boolean
+     */
     public abstract boolean isBlack();
+
+    /**
+     * Gets opposite direction.
+     *
+     * @return the opposite direction
+     */
     public abstract int getOppositeDirection();
+
+    /**
+     * Is pawn promotion square boolean.
+     *
+     * @param position the position
+     * @return the boolean
+     */
     public abstract boolean isPawnPromotionSquare(int position);
 
+    /**
+     * Choose player player.
+     *
+     * @param whiteplayer the whiteplayer
+     * @param blackplayer the blackplayer
+     * @return the player
+     */
     public abstract Player choosePlayer(final WPlayer whiteplayer,
                                         final BPlayer blackplayer);
 
+    /**
+     * Gets piece alliance.
+     *
+     * @return the piece alliance
+     */
     public Alliance getPieceAlliance() {
 
 

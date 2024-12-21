@@ -1,17 +1,34 @@
 package com.chess.engine.board;
 import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;
-import com.chess.engine.pieces.Queen;
 import com.chess.engine.pieces.Rook;
 
 import static com.chess.engine.board.Board.*;
 
 
+/**
+ * The type Move.
+ */
 public abstract class Move {
+    /**
+     * The Board.
+     */
     protected final Board board;
+    /**
+     * The Moved piece.
+     */
     protected final Piece movedPiece;
+    /**
+     * The Destination coordinate.
+     */
     protected final int destinationCoordinate;
+    /**
+     * The Is first move.
+     */
     protected final boolean isFirstMove;
+    /**
+     * The constant NULL_MOVE.
+     */
     public static final Move NULL_MOVE = new NullMove();
 
     private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
@@ -50,33 +67,77 @@ public abstract class Move {
         result = prime * result + this.movedPiece.getPiecePosition();
         return result;
     }
-    // Taj Add: Create getters:
+
+    /**
+     * Gets board.
+     *
+     * @return the board
+     */
+// Taj Add: Create getters:
     public Board getBoard() {
         return this.board;
     }
+
+    /**
+     * Gets destination coordinate.
+     *
+     * @return the destination coordinate
+     */
     public int getDestinationCoordinate() {
         return destinationCoordinate;
     }
 
+    /**
+     * Gets moved piece.
+     *
+     * @return the moved piece
+     */
     public Piece getMovedPiece() {
         return this.movedPiece;
     }
+
+    /**
+     * Is attack boolean.
+     *
+     * @return the boolean
+     */
     public boolean isAttack (){
         return false;
     }
+
+    /**
+     * Is castling move boolean.
+     *
+     * @return the boolean
+     */
     public boolean isCastlingMove(){
         return false;
     }
+
+    /**
+     * Get attacked piece piece.
+     *
+     * @return the piece
+     */
     public Piece getAttackedPiece(){
         return null;
     }
     // End getter Methods
 
 
+    /**
+     * Hashcode int.
+     *
+     * @return the int
+     */
+    public abstract int hashcode(); // todo Added Mishkat
 
-public abstract int hashcode(); // todo Added Mishkat
-
-    //Added Rawan
+    /**
+     * Execute board.
+     *
+     * @return the board
+     */
+//Added Rawan
     // Message_Taj: To improve redundancy, I pulled this upwards.
     public Board execute() {
         final Builder builder = new Builder();
@@ -94,10 +155,26 @@ public abstract int hashcode(); // todo Added Mishkat
         builder.setMoveMaker(this.board.currentPlayer().getopponent().getAlliance()); // Why the error?
         return builder.build();
     }
+
+    /**
+     * Gets attack piece.
+     *
+     * @return the attack piece
+     */
     public abstract Piece getAttackPiece(); // todo added Mishkat
 
+    /**
+     * The type Major move.
+     */
     public static final class MajorMove extends Move {
 
+        /**
+         * Instantiates a new Major move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         */
         public MajorMove(final Board board, final Piece movedPiece,
                          final int destinationCoordinate) {
             super(board, movedPiece, destinationCoordinate);
@@ -124,9 +201,24 @@ public abstract int hashcode(); // todo Added Mishkat
 
 
     }
+
+    /**
+     * The type Attack move.
+     */
     public static class AttackMove extends Move {
+        /**
+         * The Attacked piece.
+         */
         final Piece attackedPiece;
 
+        /**
+         * Instantiates a new Attack move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param attackedPiece         the attacked piece
+         */
         public AttackMove(final Board board, final Piece movedPiece,
                           final int destinationCoordinate, final Piece attackedPiece) {
             super(board, movedPiece, destinationCoordinate);
@@ -190,9 +282,19 @@ public abstract int hashcode(); // todo Added Mishkat
     }
 
 
-    // Added Rawan
+    /**
+     * The type Pawn move.
+     */
+// Added Rawan
     public static final class PawnMove extends Move {
 
+        /**
+         * Instantiates a new Pawn move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         */
         public PawnMove(final Board board, final Piece movedPiece,
                         final int destinationCoordinate) {
             super(board, movedPiece, destinationCoordinate);
@@ -226,8 +328,19 @@ public abstract int hashcode(); // todo Added Mishkat
 
     }
 
+    /**
+     * The type Pawn attack move.
+     */
     public static class PawnAttackMove extends AttackMove {
 
+        /**
+         * Instantiates a new Pawn attack move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param attackedPiece         the attacked piece
+         */
         public PawnAttackMove(final Board board, final Piece movedPiece,
                               final int destinationCoordinate, Piece attackedPiece) {
             super(board, movedPiece, destinationCoordinate, attackedPiece);
@@ -243,9 +356,20 @@ public abstract int hashcode(); // todo Added Mishkat
 //        the function above shows that when the pawn kill a piece it recorde the kill in the file following by X indicate that it has been removed.
     } // End Add
 
-    // Added Mishkat
+    /**
+     * The type Pawn en passant attack move.
+     */
+// Added Mishkat
     public static final class PawnEnPassantAttackMove extends PawnAttackMove {
 
+        /**
+         * Instantiates a new Pawn en passant attack move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param attackedPiece         the attacked piece
+         */
         public PawnEnPassantAttackMove(final Board board,
                                        final Piece movedPiece,
                                        final int destinationCoordinate,
@@ -279,12 +403,27 @@ public abstract int hashcode(); // todo Added Mishkat
 
     }// End Add
 
-    // Added Mishkat
+    /**
+     * The type Pawn promotion.
+     */
+// Added Mishkat
 //    TODO <Mishkat>
     public static class PawnPromotion extends Move{
 
+        /**
+         * The Decorated move.
+         */
         final Move decoratedMove;
+        /**
+         * The Promoted pawn.
+         */
         final Pawn promotedPawn;
+
+        /**
+         * Instantiates a new Pawn promotion.
+         *
+         * @param decoratedMove the decorated move
+         */
         public PawnPromotion(final Move decoratedMove) {
             super(decoratedMove.getBoard(),decoratedMove.getMovedPiece(),decoratedMove.getDestinationCoordinate());
             this.decoratedMove=decoratedMove;
@@ -344,9 +483,19 @@ public abstract int hashcode(); // todo Added Mishkat
 
     }
 
-    // Added Mishkat
+    /**
+     * The type Pawn jump.
+     */
+// Added Mishkat
     public static final class PawnJump extends Move {
 
+        /**
+         * Instantiates a new Pawn jump.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         */
         public PawnJump(final Board board, final Piece movedPiece,
                         final int destinationCoordinate) {
             super(board, movedPiece, destinationCoordinate);
@@ -385,13 +534,85 @@ public abstract int hashcode(); // todo Added Mishkat
             return null;
         }
     } // End Add
+    // Add this as a new inner class in the Move class
+    public static class CheckMateMove extends Move {
+        private final Move decoratedMove;
+        private final boolean isCheckmate;
 
-    // Added Ola
+        public CheckMateMove(final Move decoratedMove, final boolean isCheckmate) {
+            super(decoratedMove.getBoard(), decoratedMove.getMovedPiece(), decoratedMove.getDestinationCoordinate());
+            this.decoratedMove = decoratedMove;
+            this.isCheckmate = isCheckmate;
+        }
+
+        @Override
+        public Board execute() {
+            final Board moveBoard = this.decoratedMove.execute();
+            if (isCheckmate) {
+                System.out.println("Checkmate! " + moveBoard.currentPlayer().getopponent().toString() + " wins!");
+            }
+            return moveBoard;
+        }
+
+        @Override
+        public boolean equals(final Object other) {
+            return this == other || other instanceof CheckMateMove && super.equals(other);
+        }
+
+        @Override
+        public int hashcode() {
+            return decoratedMove.hashCode();
+        }
+
+        @Override
+        public Piece getAttackPiece() {
+            return this.decoratedMove.getAttackedPiece();
+        }
+
+        @Override
+        public boolean isAttack() {
+            return this.decoratedMove.isAttack();
+        }
+
+        @Override
+        public Piece getAttackedPiece() {
+            return this.decoratedMove.getAttackedPiece();
+        }
+
+        @Override
+        public String toString() {
+            return decoratedMove.toString() + "#"; // Chess notation for checkmate
+        }
+    }
+
+    /**
+     * The type Castle move.
+     */
+// Added Ola
     static abstract class CastleMove extends Move {
+        /**
+         * The Castle rook.
+         */
         protected final Rook castleRook;
+        /**
+         * The Castle rook start.
+         */
         protected final int castleRookStart;
+        /**
+         * The Castle rook destination.
+         */
         protected final int castleRookDestination;
 
+        /**
+         * Instantiates a new Castle move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param castleRook            the castle rook
+         * @param castleRookStart       the castle rook start
+         * @param castleRookDestination the castle rook destination
+         */
         public CastleMove(final Board board,
                           final Piece movedPiece,
                           final int destinationCoordinate,
@@ -404,6 +625,11 @@ public abstract int hashcode(); // todo Added Mishkat
             this.castleRookDestination = castleRookDestination;
         }
 
+        /**
+         * Gets castle rook.
+         *
+         * @return the castle rook
+         */
         public Rook getCastleRook() {
             return this.castleRook;
         }
@@ -465,9 +691,22 @@ public abstract int hashcode(); // todo Added Mishkat
     } // End Add
 
 
-    // Added Taj
+    /**
+     * The type King side castle move.
+     */
+// Added Taj
     public static final class KingSideCastleMove extends CastleMove {
 
+        /**
+         * Instantiates a new King side castle move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param castleRook            the castle rook
+         * @param castleRookStart       the castle rook start
+         * @param castleRookDestination the castle rook destination
+         */
         public KingSideCastleMove(final Board board,
                                   final Piece movedPiece,
                                   final int destinationCoordinate,
@@ -506,9 +745,22 @@ public abstract int hashcode(); // todo Added Mishkat
 
     } // End Add
 
-    // Added Rawan
+    /**
+     * The type Queen side castle move.
+     */
+// Added Rawan
     public static final class QueenSideCastleMove extends CastleMove {
 
+        /**
+         * Instantiates a new Queen side castle move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param castleRook            the castle rook
+         * @param castleRookStart       the castle rook start
+         * @param castleRookDestination the castle rook destination
+         */
         public QueenSideCastleMove(final Board board,
                                    final Piece movedPiece,
                                    final int destinationCoordinate,
@@ -551,9 +803,15 @@ public abstract int hashcode(); // todo Added Mishkat
 
     } // End Add
 
-    // Added Rawan
+    /**
+     * The type Null move.
+     */
+// Added Rawan
     public static final class NullMove extends Move {
 
+        /**
+         * Instantiates a new Null move.
+         */
         public NullMove() {
             super(null, null, -1);
             }
@@ -579,12 +837,24 @@ public abstract int hashcode(); // todo Added Mishkat
     //TODO these extended move classes will help us print into PGN format
 
 
-    // Added Rawan
-    public static class MoveFactory {
+    /**
+     * The type Move creator.
+     */
+// Added Rawan
+    public static class MoveCreator {
 
-        private MoveFactory() {
+        private MoveCreator() {
             throw new RuntimeException("Not instantiatable!");
         }
+
+        /**
+         * Create move move.
+         *
+         * @param board                 the board
+         * @param currentCoordinate     the current coordinate
+         * @param destinationCoordinate the destination coordinate
+         * @return the move
+         */
         public static Move createMove(final Board board,
                                       final int currentCoordinate,
                                       final int destinationCoordinate) {
@@ -598,8 +868,19 @@ public abstract int hashcode(); // todo Added Mishkat
         }
     } // End Add
 
+    /**
+     * The type Major attack move.
+     */
     public static class MajorAttackMove extends  AttackMove{
 
+        /**
+         * Instantiates a new Major attack move.
+         *
+         * @param board                 the board
+         * @param movedPiece            the moved piece
+         * @param destinationCoordinate the destination coordinate
+         * @param attackedPiece         the attacked piece
+         */
         public MajorAttackMove(final Board board, final Piece movedPiece, final int destinationCoordinate, final Piece attackedPiece) {
             super(board, movedPiece, destinationCoordinate, attackedPiece);
         }

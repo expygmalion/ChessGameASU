@@ -13,6 +13,9 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.Collection;
 
+/**
+ * The type King.
+ */
 // King class
 public class King extends Piece {
 
@@ -21,7 +24,15 @@ public class King extends Piece {
     private final boolean kingSideCastleCapable;
     private final boolean queenSideCastleCapable;
 
-    // Constructor for King
+    /**
+     * Instantiates a new King.
+     *
+     * @param piecePosition          the piece position
+     * @param pieceAlliance          the piece alliance
+     * @param kingSideCastleCapable  the king side castle capable
+     * @param queenSideCastleCapable the queen side castle capable
+     */
+// Constructor for King
     public King(final int piecePosition, final Alliance pieceAlliance, final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceAlliance, true);
         this.isCastled = false;
@@ -29,6 +40,16 @@ public class King extends Piece {
         this.queenSideCastleCapable = queenSideCastleCapable;
     }
 
+    /**
+     * Instantiates a new King.
+     *
+     * @param alliance               the alliance
+     * @param piecePosition          the piece position
+     * @param isFirstMove            the is first move
+     * @param isCastled              the is castled
+     * @param kingSideCastleCapable  the king side castle capable
+     * @param queenSideCastleCapable the queen side castle capable
+     */
     public King(final Alliance alliance,
                 final int piecePosition,
                 final boolean isFirstMove,
@@ -41,14 +62,29 @@ public class King extends Piece {
         this.queenSideCastleCapable = queenSideCastleCapable;
     }
 
+    /**
+     * Is king side castle capable boolean.
+     *
+     * @return the boolean
+     */
     public boolean isKingSideCastleCapable() {
         return this.kingSideCastleCapable;
     }
 
+    /**
+     * Is queen side castle capable boolean.
+     *
+     * @return the boolean
+     */
     public boolean isQueenSideCastleCapable() {
         return this.queenSideCastleCapable;
     }
 
+    /**
+     * Is castled boolean.
+     *
+     * @return the boolean
+     */
     public boolean isCastled() {
         return this.isCastled;
     }

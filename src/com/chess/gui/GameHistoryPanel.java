@@ -32,6 +32,8 @@ class GameHistoryPanel extends JPanel {
         this.setVisible(true);
     }
 
+    // Added Khalid
+
     void redo(final Board board, final MoveLog moveHistory) {
         int currentRow = 0;
         this.model.clear();
@@ -76,8 +78,10 @@ class GameHistoryPanel extends JPanel {
             return "+";
         }
         return "";
-    }
+    } // End Add
 
+
+    // Added Ahmed
     private static class Row {
 
         private String whiteMove;
@@ -102,8 +106,10 @@ class GameHistoryPanel extends JPanel {
             this.blackMove = move;
         }
 
-    }
+    } //End Add
 
+
+    // Added Kaballo
     private static class DataModel extends DefaultTableModel {
 
         private final List<Row> values;
@@ -171,5 +177,5 @@ class GameHistoryPanel extends JPanel {
         public String getColumnName(final int col) {
             return NAMES[col];
         }
-    }
+    } // End Add
 }

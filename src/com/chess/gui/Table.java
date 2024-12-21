@@ -28,6 +28,9 @@ import static javax.swing.SwingUtilities.isLeftMouseButton; // imported from API
 import static javax.swing.SwingUtilities.isRightMouseButton; // imported from API
 
 
+/**
+ * The type Table.
+ */
 public class Table {
     private final  JFrame gameFrame;
     private final BoardPanel boardPanel;
@@ -46,15 +49,27 @@ public class Table {
     private final DeadPiecePanel deadPiecePanel;
 
 
-
+    /**
+     * Gets game history panel.
+     *
+     * @return the game history panel
+     */
     public GameHistoryPanel getGameHistoryPanel() {
         return gameHistoryPanel;
     }
 
+    /**
+     * Gets dead piece panel.
+     *
+     * @return the dead piece panel
+     */
     public DeadPiecePanel getDeadPiecePanel() {
         return deadPiecePanel;
     }
 
+    /**
+     * Instantiates a new Table.
+     */
     public Table() {
         this.gameHistoryPanel = new GameHistoryPanel();
         this.deadPiecePanel = new DeadPiecePanel();
@@ -80,6 +95,7 @@ public class Table {
         return tableMenuBar;
 
     }
+    // Added taj & Misho
     private void saveBoardStateToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("board_state.txt", false))) { // Set append to false
             // Convert the current board state to a string representation
@@ -101,8 +117,8 @@ public class Table {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
+    } // End Add
+//
     private JMenu createPreferencesMenu(){
         final JMenu preferencesMenu = new JMenu("Preferences");
         final JMenuItem flipBoardMenu = new JMenuItem("Flip Board");
@@ -117,7 +133,13 @@ public class Table {
         return preferencesMenu;
     }
 
+    /**
+     * The enum Board direction.
+     */
     public enum BoardDirection {
+        /**
+         * The Normal.
+         */
         NORMAL{
             @Override
             List<TilePanel> traverse(final List<TilePanel> boardTiles){return boardTiles;}
@@ -126,6 +148,9 @@ public class Table {
                 return FLIPPED;
             }
         },
+        /**
+         * The Flipped.
+         */
         FLIPPED{
             @Override
             List<TilePanel> traverse(final List<TilePanel> boardTiles){return Lists.reverse(boardTiles);}
@@ -134,7 +159,20 @@ public class Table {
                 return NORMAL;
             }
         };
+
+        /**
+         * Traverse list.
+         *
+         * @param boardTiles the board tiles
+         * @return the list
+         */
         abstract List<TilePanel> traverse(List<TilePanel> boardTiles);
+
+        /**
+         * Opposite board direction.
+         *
+         * @return the board direction
+         */
         abstract BoardDirection opposite();
 
 
@@ -143,11 +181,11 @@ public class Table {
     private JMenu createFileMenu() {
 
         final JMenu fileMenu = new JMenu("File");
-        final JMenuItem openPGN = new JMenuItem("‘Upload PGN");
+        final JMenuItem openPGN = new JMenuItem("Upload File");
         openPGN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Opening PGN");
+                System.out.println("Opening File");
             }
         });
         fileMenu.add(openPGN);
@@ -162,7 +200,14 @@ public class Table {
         return fileMenu;
     }
     private class BoardPanel extends JPanel {
+        /**
+         * The Board tiles.
+         */
         final List<TilePanel> boardTiles;
+
+        /**
+         * Instantiates a new Board panel.
+         */
         public BoardPanel() {
             super(new GridLayout(8,8));
             this.boardTiles = new ArrayList<>();
@@ -176,6 +221,12 @@ public class Table {
             setBackground(new Color(97, 68, 34));
             validate();
         }
+
+        /**
+         * Draw board.
+         *
+         * @param board the board
+         */
         public void drawBoard(final Board board) {
             removeAll();
             for(final TilePanel tilePanel : boardDirection.traverse(boardTiles)) { // boardtiles is norm
@@ -187,42 +238,88 @@ public class Table {
         }
     }
 
+    /**
+     * The type Move log.
+     */
     public static class MoveLog {
 
         private final List<Move> moves;
 
+        /**
+         * Instantiates a new Move log.
+         */
         MoveLog() {
             this.moves = new ArrayList<>();
         }
 
+        /**
+         * Gets moves.
+         *
+         * @return the moves
+         */
         public List<Move> getMoves() {
             return this.moves;
         }
 
+        /**
+         * Add move.
+         *
+         * @param move the move
+         */
         void addMove(final Move move) {
             this.moves.add(move);
         }
 
+        /**
+         * Size int.
+         *
+         * @return the int
+         */
         public int size() {
             return this.moves.size();
         }
 
+        /**
+         * Clear.
+         */
         void clear() {
             this.moves.clear();
         }
 
+        /**
+         * Remove move move.
+         *
+         * @param index the index
+         * @return the move
+         */
         Move removeMove(final int index) {
             return this.moves.remove(index);
         }
 
+        /**
+         * Remove move boolean.
+         *
+         * @param move the move
+         * @return the boolean
+         */
         boolean removeMove(final Move move) {
             return this.moves.remove(move);
         }
 
     }
+
+    /**
+     * The type Tile panel.
+     */
     public class TilePanel extends JPanel {
         private final int tileID;
 
+        /**
+         * Instantiates a new Tile panel.
+         *
+         * @param boardPanel the board panel
+         * @param tileID     the tile id
+         */
         public TilePanel(final BoardPanel boardPanel, final int tileID) {
             super(new GridBagLayout());
             this.tileID = tileID;
@@ -254,7 +351,7 @@ public class Table {
                         } else {
                             // Second click: attempt to move
                             destinationTile = CHESSBOARD.getTile(tileID);
-                            final Move move = Move.MoveFactory.createMove(
+                            final Move move = Move.MoveCreator.createMove(
                                     CHESSBOARD,
                                     sourceTile.getTileCoordinate(),
                                     destinationTile.getTileCoordinate()
@@ -318,6 +415,12 @@ public class Table {
             });
             validate();
         }
+
+        /**
+         * Draw tile.
+         *
+         * @param board the board
+         */
         public void drawTile(final Board board) {
             assignTileColor();
             assignTilePieceIcon(board);

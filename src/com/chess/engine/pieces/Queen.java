@@ -11,17 +11,42 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type Queen.
+ */
 //TODO Khalid Creates the Class and provides structure and functionality
 public class Queen extends Piece {
 
     private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
+    /**
+     * Instantiates a new Queen.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     */
     public Queen(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.QUEEN, piecePosition, pieceAlliance, true); //Omer added a new parameter (piecetype)
     }
+
+    /**
+     * Instantiates a new Queen.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     * @param isFirstMove   the is first move
+     */
     public Queen(int piecePosition, Alliance pieceAlliance, final boolean isFirstMove) {
         super(PieceType.QUEEN, piecePosition, pieceAlliance, isFirstMove);
     }
+
+    /**
+     * Instantiates a new Queen.
+     *
+     * @param pieceAlliance the piece alliance
+     * @param piecePosition the piece position
+     * @param isFirstMove   the is first move
+     */
     public Queen(Alliance pieceAlliance, int piecePosition , boolean isFirstMove) {
         super();
     }

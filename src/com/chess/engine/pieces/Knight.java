@@ -14,13 +14,31 @@ import java.util.List;
 
 //TODO Taj Creates the Class and provides structure and functionality
 
+/**
+ * The type Knight.
+ */
 public class Knight extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
+
+    /**
+     * Instantiates a new Knight.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     */
     public Knight(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.KNIGHT, piecePosition, pieceAlliance, true); //Omer added a new parameter (piecetype)
     }
 
+    /**
+     * Instantiates a new Knight.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     * @param isFirstMove   the is first move
+     */
+// constructor used for the promotion functionality
     public Knight(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
         super(PieceType.KNIGHT, piecePosition, pieceAlliance, isFirstMove);
     }

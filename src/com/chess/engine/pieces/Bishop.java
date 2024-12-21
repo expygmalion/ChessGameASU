@@ -11,15 +11,31 @@ import java.util.List;
 
 //TODO Taj Creates the Class and provides structure and functionality
 
+/**
+ * The type Bishop.
+ */
 public class Bishop extends Piece {
 
     private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9};
 
+    /**
+     * Instantiates a new Bishop.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     */
     public Bishop(int piecePosition, Alliance pieceAlliance) {
         super(PieceType.BISHOP, piecePosition, pieceAlliance, true); // Omer added a new parameter (piecetype)
 
     }
 
+    /**
+     * Instantiates a new Bishop.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     * @param isFirstMove   the is first move
+     */
     public Bishop(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
         super(PieceType.BISHOP, piecePosition, pieceAlliance, isFirstMove);
     }

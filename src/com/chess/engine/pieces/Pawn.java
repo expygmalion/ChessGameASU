@@ -10,15 +10,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type Pawn.
+ */
 //TODO MISHKAT Creates the Class and provides structure and functionality
 public class Pawn extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATE = {8, 16, 9, 7};
 
+    /**
+     * Instantiates a new Pawn.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     */
     public Pawn(int piecePosition, Alliance pieceAlliance) {
         super(PieceType.PAWN, piecePosition, pieceAlliance, true); // Omer added a new parameter (piecetype)
     }
 
+    /**
+     * Instantiates a new Pawn.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     * @param isFirstMove   the is first move
+     */
     public Pawn(final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
         super(PieceType.PAWN, piecePosition, pieceAlliance, isFirstMove);
     }
@@ -116,7 +132,18 @@ public class Pawn extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    /**
+     * Gets promotion piece.
+     *
+     * @return the promotion piece
+     */
     public Piece getPromotionPiece() {
+        try{
         return new Queen(this.pieceAlliance, this.piecePosition, false);
+    }catch(Exception e){
+        throw new IllegalStateException("Failed to get the promotion piece. ",e);
+//        for undefined behavior(invalid position or null alliance).
+        }
+
     }
 }

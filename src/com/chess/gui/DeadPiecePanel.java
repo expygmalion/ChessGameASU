@@ -23,11 +23,13 @@ import javax.swing.border.EtchedBorder;
 import com.chess.engine.board.Move;
 import com.chess.engine.pieces.Piece;
 import com.chess.gui.Table.MoveLog;
-import com.google.common.primitives.Ints;
 
+
+/**
+ * The type Dead piece panel.
+ */
 class DeadPiecePanel extends JPanel {
 
-    private static final long serialVersionUID = 1L;
 
     // Panel styling constants
     private static final Color PANEL_BACKGROUND = new Color(255, 255, 255);
@@ -47,6 +49,11 @@ class DeadPiecePanel extends JPanel {
     private final JPanel northPanel;  // Panel for black captured pieces
     private final JPanel southPanel;  // Panel for white captured pieces
 
+
+    /**
+     * Instantiates a new Dead piece panel.
+     */
+// Added Rawan
     public DeadPiecePanel() {
         super(new BorderLayout());
 
@@ -66,12 +73,15 @@ class DeadPiecePanel extends JPanel {
         // Add sub-panels to main panel
         add(this.northPanel, BorderLayout.NORTH);
         add(this.southPanel, BorderLayout.SOUTH);
-    }
+    } // End Add
+
 
     /**
-     * Updates the panel with newly captured pieces
-     * @param moveLog The log containing all moves and captured pieces
+     * Redo.
+     *
+     * @param moveLog the move log
      */
+// Added Ola
     public void redo(final MoveLog moveLog) {
         // Clear existing pieces
         southPanel.removeAll();
@@ -94,29 +104,26 @@ class DeadPiecePanel extends JPanel {
             }
         }
 
-        // Sort pieces by value (pawns first, queen last)
-        Collections.sort(whiteTakenPieces, Comparator.comparingInt(Piece::getPieceValue));
-        Collections.sort(blackTakenPieces, Comparator.comparingInt(Piece::getPieceValue));
-
-        // Display white captured pieces
+        // Add white captured pieces to the south panel
         for (final Piece takenPiece : whiteTakenPieces) {
             addPieceToPanel(takenPiece, southPanel);
         }
 
-        // Display black captured pieces
+        // Add black captured pieces to the north panel
         for (final Piece takenPiece : blackTakenPieces) {
             addPieceToPanel(takenPiece, northPanel);
         }
 
         validate();
         repaint();
-    }
+    } // End Add
 
     /**
      * Adds a piece image to the specified panel, using cached images when possible
      * @param piece The captured piece to display
      * @param panel The panel to add the piece to
      */
+    // ADDED Mishkat
     private void addPieceToPanel(final Piece piece, final JPanel panel) {
         try {
             // Create a unique key for this piece type
@@ -140,11 +147,12 @@ class DeadPiecePanel extends JPanel {
         } catch (final IOException e) {
             System.err.println("Error loading piece image: " + e.getMessage());
         }
-    }
+    } // End Add
 
     /**
-     * Clears the image cache, useful when changing piece styles or freeing memory
+     * Clear image cache.
      */
+// Not Used
     public static void clearImageCache() {
         pieceImageCache.clear();
     }

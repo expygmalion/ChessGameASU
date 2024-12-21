@@ -10,14 +10,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type Rook.
+ */
 //TODO Khalid Creates the Class and provides structure and functionality
 public class Rook extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
+    /**
+     * Instantiates a new Rook.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     */
     public Rook(final int piecePosition, final Alliance pieceAlliance) {
         super(PieceType.ROOK, piecePosition, pieceAlliance, true); // Omer added a new parameter (piecetype)
     }
+
+    /**
+     * Instantiates a new Rook.
+     *
+     * @param piecePosition the piece position
+     * @param pieceAlliance the piece alliance
+     * @param isFirstMove   the is first move
+     */
     public Rook(int piecePosition, Alliance pieceAlliance, final boolean isFirstMove) {
         super(PieceType.ROOK, piecePosition, pieceAlliance, isFirstMove);
     }
